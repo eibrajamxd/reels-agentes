@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo funcionan los AirTag",
+  "titulo": "¿Cómo encuentra un AirTag tu maleta?",
+  "escenas": [
+    {
+      "narracion": "Un AirTag no tiene GPS… y aun así puede decirte dónde está tu maleta al otro lado del mundo.",
+      "texto_pantalla": "SIN GPS",
+      "busqueda_video": "airport luggage",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Lo que hace es emitir una pequeña señal Bluetooth, como un susurro constante.",
+      "texto_pantalla": "UN SUSURRO BLUETOOTH",
+      "busqueda_video": "bluetooth device",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Cualquier iPhone, iPad o Mac que pase cerca escucha ese susurro, aunque no sea tuyo.",
+      "texto_pantalla": "LO ESCUCHA CUALQUIER IPHONE",
+      "busqueda_video": "people walking phones",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Ese equipo envía a Apple, en segundo plano, su propia ubicación… cifrada.",
+      "texto_pantalla": "ENVÍA SU UBICACIÓN",
+      "busqueda_video": "city map aerial",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Solo tú puedes descifrarla: ni Apple ni la persona que pasó cerca saben de quién es el AirTag.",
+      "texto_pantalla": "SOLO TÚ LO VES",
+      "busqueda_video": "encrypted lock",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Y como hay cientos de millones de equipos Apple en el mundo, casi siempre hay uno cerca.",
+      "texto_pantalla": "CIENTOS DE MILLONES",
+      "busqueda_video": "crowd street",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Cuando ya estás cerca, el iPhone usa banda ultraancha para guiarte con una flecha, con mucha precisión.",
+      "texto_pantalla": "LA FLECHA",
+      "busqueda_video": "phone screen arrow",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Y todo funciona con una pila de botón que dura alrededor de un año.",
+      "texto_pantalla": "PILA DE 1 AÑO",
+      "busqueda_video": "coin battery",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué gadget quieres que expliquemos?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "gadgets desk",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El AirTag no tiene GPS; emite señales Bluetooth Low Energy.",
+    "Dispositivos Apple cercanos de la red Buscar (Find My) detectan la señal y envían su ubicación a iCloud con cifrado de extremo a extremo.",
+    "Ni Apple ni el dueño del dispositivo que lo detecta conocen la identidad ni la ubicación del dueño del AirTag.",
+    "La red Buscar tiene cientos de millones de dispositivos (cifra publicada por Apple).",
+    "La búsqueda precisa usa banda ultraancha (chip U1/U2) en iPhone 11 o posterior.",
+    "Usa una pila CR2032 reemplazable con duración aproximada de un año."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo funciona el teclado de tu computador",
+  "titulo": "¿Cómo sabe tu teclado qué tecla presionas?",
+  "escenas": [
+    {
+      "narracion": "Tu teclado no tiene un cable para cada tecla. Tiene una cuadrícula escondida.",
+      "texto_pantalla": "UNA CUADRÍCULA",
+      "busqueda_video": "keyboard closeup",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Debajo de las teclas hay láminas con caminos de metal: unos forman filas y otros, columnas.",
+      "texto_pantalla": "FILAS Y COLUMNAS",
+      "busqueda_video": "circuit board macro",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Al presionar una tecla, se unen una fila y una columna, y se cierra el circuito justo en ese cruce.",
+      "texto_pantalla": "SE CIERRA EL CIRCUITO",
+      "busqueda_video": "pressing keyboard key",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Un pequeño chip revisa las filas una por una, cientos de veces por segundo, buscando qué cruce se cerró.",
+      "texto_pantalla": "EL CHIP REVISA",
+      "busqueda_video": "microchip",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Fila tres, columna cinco: ese cruce corresponde a una tecla exacta.",
+      "texto_pantalla": "FILA 3 × COLUMNA 5",
+      "busqueda_video": "keyboard typing fast",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Pero el chip no envía una letra: envía un código numérico al computador.",
+      "texto_pantalla": "ENVÍA UN CÓDIGO",
+      "busqueda_video": "usb cable",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Y el computador lo traduce según tu idioma. Por eso, con el teclado en inglés, la tecla de la eñe escribe un punto y coma.",
+      "texto_pantalla": "¿Y LA Ñ?",
+      "busqueda_video": "laptop keyboard",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Si aprietas muchas teclas a la vez, algunos teclados se confunden y registran teclas que no tocaste. Por eso los teclados gamer evitan ese error.",
+      "texto_pantalla": "FANTASMAS",
+      "busqueda_video": "gaming keyboard rgb",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué parte del computador explicamos después?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "computer setup",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Los teclados usan una matriz de filas y columnas; una tecla cierra el contacto en su cruce.",
+    "Teclados de membrana: láminas plásticas con trazas conductoras; los mecánicos usan interruptores por tecla, también en matriz.",
+    "Un microcontrolador escanea la matriz cientos o miles de veces por segundo.",
+    "El teclado envía códigos de tecla (scan codes / códigos HID), no letras; el sistema operativo los traduce según la distribución.",
+    "En la distribución en inglés (EE. UU.), la tecla que en español es Ñ produce ';'.",
+    "'Ghosting': en matrices sin diodos, ciertas combinaciones de 3+ teclas generan teclas fantasma; los teclados con anti-ghosting/n-key rollover lo evitan."
+  ]
+}

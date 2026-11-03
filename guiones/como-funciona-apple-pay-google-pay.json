@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo funcionan Apple Pay y Google Pay",
+  "titulo": "¿Cómo pagas con el celular sin dar tu tarjeta?",
+  "escenas": [
+    {
+      "narracion": "Cuando pagas con el celular, la tienda nunca ve el número de tu tarjeta.",
+      "texto_pantalla": "NUNCA VEN TU TARJETA",
+      "busqueda_video": "contactless payment phone",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Al agregar tu tarjeta, se crea un número sustituto, un token, que solo existe en ese teléfono.",
+      "texto_pantalla": "UN NÚMERO SUSTITUTO",
+      "busqueda_video": "credit card closeup",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Al acercarlo a la terminal, se comunican por NFC: ondas de radio que solo alcanzan unos pocos centímetros.",
+      "texto_pantalla": "NFC: POCOS CENTÍMETROS",
+      "busqueda_video": "payment terminal",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "El teléfono envía ese token y un código que sirve para una sola compra.",
+      "texto_pantalla": "UN CÓDIGO DE UN SOLO USO",
+      "busqueda_video": "smartphone tap",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "La red de la tarjeta lo lleva hasta tu banco, que sabe a qué tarjeta real corresponde y aprueba el pago… en un segundo.",
+      "texto_pantalla": "EL BANCO APRUEBA",
+      "busqueda_video": "bank building",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Si alguien copiara esos datos, no le servirían: ese código ya se usó.",
+      "texto_pantalla": "COPIARLO NO SIRVE",
+      "busqueda_video": "hacker computer",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Y antes de pagar, tienes que confirmar con tu cara, tu huella o tu código.",
+      "texto_pantalla": "SOLO TÚ",
+      "busqueda_video": "face unlock",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Por eso, si pierdes el celular, puedes desactivar ese token sin tener que cambiar tu tarjeta.",
+      "texto_pantalla": "¿LO PERDISTE?",
+      "busqueda_video": "lost phone",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué tecnología quieres que expliquemos?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "shopping city",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Apple Pay y Google Pay usan tokenización: el comercio recibe un número de cuenta del dispositivo/token, no el número real de la tarjeta.",
+    "La comunicación con la terminal es NFC, de corto alcance (unos pocos centímetros).",
+    "Cada transacción incluye un criptograma dinámico de un solo uso.",
+    "La red de pagos y el emisor (banco) relacionan el token con la tarjeta real y autorizan.",
+    "Se requiere autenticación del usuario (Face ID, Touch ID, huella, PIN/código) en muchos casos.",
+    "Se puede suspender o eliminar el token (p. ej. desde Buscar/Encontrar mi dispositivo) sin reemplazar la tarjeta física."
+  ]
+}

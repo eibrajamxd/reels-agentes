@@ -173,6 +173,56 @@ def planificar_semana(temas_fijos: list[str], total: int) -> dict:
     return resultado
 
 
+SCHEMA_PRIORIDAD = {
+    "type": "object",
+    "properties": {
+        "ranking": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "archivo": {"type": "string"},
+                    "puntaje": {"type": "integer", "description": "0 a 100, potencial de alcance"},
+                    "fuerza_del_gancho": {"type": "string"},
+                    "motivo": {"type": "string"},
+                    "mejora_sugerida": {"type": "string"},
+                },
+                "required": ["archivo", "puntaje", "fuerza_del_gancho", "motivo", "mejora_sugerida"],
+                "additionalProperties": False,
+            },
+        },
+        "primero": {"type": "string", "description": "archivo del Reel que conviene publicar primero"},
+        "por_que_primero": {"type": "string"},
+    },
+    "required": ["ranking", "primero", "por_que_primero"],
+    "additionalProperties": False,
+}
+
+
+def priorizar(rutas: list[str]) -> dict:
+    """El CM compara guiones y decide cuál publicar primero (y en qué orden los demás)."""
+    guiones = []
+    for r in rutas:
+        g = json.loads(Path(r).read_text("utf-8"))
+        guiones.append({"archivo": r, "titulo": g["titulo"],
+                        "narracion": [e["narracion"] for e in g["escenas"]],
+                        "titulares": [e["texto_pantalla"] for e in g["escenas"]]})
+    publicados = [c["tema"] for c in leer_cola() if c["estado"] == "publicado"]
+    metricas = METRICAS.read_text("utf-8")[:6000] if METRICAS.exists() else "Aún no hay datos (cuenta nueva)."
+    prompt = (
+        f"Guiones candidatos:\n{json.dumps(guiones, ensure_ascii=False, indent=1)}\n\n"
+        f"Ya publicados: {json.dumps(publicados, ensure_ascii=False)}\nMétricas: {metricas}\n\n"
+        "Evalúa cada guion como Reel para una cuenta nueva en crecimiento: fuerza del gancho en los primeros "
+        "2 segundos, curiosidad universal (¿le pasa a todo el mundo?), probabilidad de que lo guarden y lo "
+        "compartan, y potencial de comentarios. Ordénalos de mayor a menor puntaje y elige cuál publicar primero. "
+        "Usa en `archivo` exactamente la ruta recibida."
+    )
+    r = pedir_json(SYSTEM, prompt, SCHEMA_PRIORIDAD, effort="high")
+    r["ranking"].sort(key=lambda x: -x["puntaje"])
+    (DIR_DATA / "priorizacion.json").write_text(json.dumps(r, ensure_ascii=False, indent=2), "utf-8")
+    return r
+
+
 def preparar_publicacion(guion: dict, video: str, horario: datetime | None = None) -> dict:
     """El CM escribe el copy, elige horario (o usa el ya planificado) y mete el Reel en la cola."""
     huecos = [horario] if horario else huecos_libres()

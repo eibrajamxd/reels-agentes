@@ -1,0 +1,67 @@
+{
+  "tema": "Cómo sabe Google Maps que hay taco",
+  "titulo": "¿Cómo sabe Google Maps que hay taco?",
+  "escenas": [
+    {
+      "narracion": "En 2020, un artista creó un taco falso en Google Maps… caminando con un carrito lleno de 99 celulares.",
+      "texto_pantalla": "UN TACO FALSO",
+      "busqueda_video": "traffic jam city",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Y eso revela el truco: Google Maps no ve los autos. Ve los teléfonos.",
+      "texto_pantalla": "NO VE AUTOS",
+      "busqueda_video": "phone navigation car",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Si tienes la ubicación activada, tu celular envía de forma anónima dónde estás y a qué velocidad avanzas.",
+      "texto_pantalla": "TU CELULAR REPORTA",
+      "busqueda_video": "smartphone gps map",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Google junta los datos de miles de teléfonos que pasan por el mismo tramo de calle.",
+      "texto_pantalla": "MILES DE TELÉFONOS",
+      "busqueda_video": "city traffic aerial",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Si todos avanzan lento, la calle se pinta de naranja o rojo. Si avanzan rápido, de verde.",
+      "texto_pantalla": "LENTO = ROJO",
+      "busqueda_video": "traffic lights night",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Además lo compara con el historial: cómo suele estar esa calle, por ejemplo, un lunes a las seis de la tarde.",
+      "texto_pantalla": "EL HISTORIAL",
+      "busqueda_video": "rush hour highway",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Y suma lo que reportan los usuarios de Waze, que también es de Google: choques, obras y calles cerradas.",
+      "texto_pantalla": "REPORTES",
+      "busqueda_video": "road works",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Por eso, cuando 99 celulares avanzaban a paso de peatón por una calle vacía, Maps creyó que había un taco.",
+      "texto_pantalla": "99 CELULARES = TACO",
+      "busqueda_video": "empty street",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué app quieres que expliquemos?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "phone apps",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Simon Weckert, artista alemán, creó en febrero de 2020 un atasco virtual en Google Maps en Berlín llevando 99 teléfonos en un carrito.",
+    "Google Maps calcula el tráfico con datos de ubicación agregados y anónimos de teléfonos con la ubicación activada.",
+    "Usa también datos históricos de tráfico por día y hora.",
+    "Waze pertenece a Google desde 2013 y sus reportes de usuarios alimentan la información de incidentes.",
+    "Colores en Maps: verde (fluido), naranja (moderado), rojo (lento)."
+  ]
+}

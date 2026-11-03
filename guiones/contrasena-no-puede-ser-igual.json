@@ -1,0 +1,66 @@
+{
+  "tema": "Por qué al cambiar tu contraseña te dicen que no puede ser igual a la anterior",
+  "titulo": "¿Cómo sabe que tu contraseña es la misma?",
+  "escenas": [
+    {
+      "narracion": "Si la página no guarda tu contraseña… ¿cómo sabe que la nueva es igual a la anterior?",
+      "texto_pantalla": "¿CÓMO LO SABE?",
+      "busqueda_video": "password login screen",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Las páginas serias no guardan tu contraseña. Guardan su huella: un código llamado hash.",
+      "texto_pantalla": "GUARDAN UN HASH",
+      "busqueda_video": "fingerprint scan",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Un hash es una fórmula que convierte tu contraseña en un código larguísimo que no se puede revertir.",
+      "texto_pantalla": "NO SE PUEDE REVERTIR",
+      "busqueda_video": "code on screen",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Es como una licuadora: de una fruta sale un jugo… pero del jugo no puedes reconstruir la fruta.",
+      "texto_pantalla": "COMO UNA LICUADORA",
+      "busqueda_video": "blender smoothie",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Pero la misma contraseña siempre produce exactamente el mismo código.",
+      "texto_pantalla": "MISMA CLAVE, MISMO CÓDIGO",
+      "busqueda_video": "keyboard typing",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Cuando inicias sesión, calculan el hash de lo que escribiste y lo comparan con el guardado. Si coinciden, entras.",
+      "texto_pantalla": "SI COINCIDEN, ENTRAS",
+      "busqueda_video": "unlock phone",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Al cambiarla, hacen lo mismo: sacan el hash de la nueva y lo comparan con el anterior. Si es idéntico… es la misma contraseña.",
+      "texto_pantalla": "¡MISMO HASH!",
+      "busqueda_video": "password reset",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Y un consejo: si una página puede enviarte tu contraseña por correo, tal cual la escribiste, desconfía. Significa que la guarda sin protección.",
+      "texto_pantalla": "¡DESCONFÍA!",
+      "busqueda_video": "email inbox",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué otra duda de internet tienes?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "laptop night",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Los sistemas bien diseñados almacenan un hash (normalmente con 'sal' y algoritmos lentos como bcrypt o Argon2), no la contraseña.",
+    "Un hash criptográfico es unidireccional: no se puede obtener la contraseña a partir del hash.",
+    "La misma entrada (con la misma sal) produce siempre el mismo hash; así verifican el inicio de sesión y detectan que la nueva contraseña es igual a la anterior.",
+    "Si un servicio puede enviarte tu contraseña original, la almacena de forma recuperable (texto plano o cifrado reversible), una mala práctica."
+  ]
+}

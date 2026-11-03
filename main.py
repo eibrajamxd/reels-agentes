@@ -6,6 +6,7 @@ Uso rápido:
   python main.py voces             # escuchar todas las voces antes de elegir
   python main.py elegir-voz es-MX-JorgeNeural
   python main.py semana guiones/a.json "tema 2" "tema 3" --total 5   # el CM planifica y produce la semana
+  python main.py priorizar          # el CM ordena los guiones sin publicar y elige el primero
   python main.py ideas 10          # el guionista propone temas
   python main.py auto 3            # produce y programa los 3 siguientes temas de ideas.json
   python main.py cola              # ver calendario
@@ -104,6 +105,8 @@ def main():
     se.add_argument("temas", nargs="*", help="temas fijos en orden (texto o ruta de guion)")
     se.add_argument("--total", type=int, default=5, help="días a planificar")
     se.add_argument("--solo-plan", action="store_true", help="solo mostrar el calendario")
+    pr = sub.add_parser("priorizar", help="el CM decide qué guion publicar primero")
+    pr.add_argument("guiones", nargs="*", help="rutas de guiones (por defecto, todos los no publicados)")
     i = sub.add_parser("ideas"); i.add_argument("n", type=int, nargs="?", default=10)
     a = sub.add_parser("auto"); a.add_argument("n", type=int, nargs="?", default=1)
     sub.add_parser("cola")
@@ -127,6 +130,18 @@ def main():
         print(f"✅ Voz del canal: {args.nombre} (guardada en .env)")
     elif args.cmd == "semana":
         semana(args.temas, args.total, args.solo_plan)
+    elif args.cmd == "priorizar":
+        rutas = args.guiones
+        if not rutas:
+            publicados = {guionista.slug(c["tema"]) for c in cm.leer_cola() if c["estado"] == "publicado"}
+            rutas = [str(r) for r in sorted(Path("guiones").glob("*.json"))
+                     if guionista.slug(json.loads(r.read_text("utf-8"))["tema"]) not in publicados]
+        print(f"📊 Community Manager evaluando {len(rutas)} guiones...")
+        r = cm.priorizar(rutas)
+        for k, g in enumerate(r["ranking"], 1):
+            print(f"\n{k}. [{g['puntaje']}/100] {g['archivo']}")
+            print(f"   Gancho: {g['fuerza_del_gancho']}\n   Por qué: {g['motivo']}\n   Mejora: {g['mejora_sugerida']}")
+        print(f"\n🥇 Publicar primero: {r['primero']}\n   {r['por_que_primero']}")
     elif args.cmd == "ideas":
         for k, idea in enumerate(guionista.proponer_ideas(args.n), 1):
             print(f"{k:>2}. {idea['tema']}\n    Gancho: {idea['gancho']}")
