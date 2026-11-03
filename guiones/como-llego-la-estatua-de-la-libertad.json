@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo llegó la Estatua de la Libertad a Nueva York",
+  "titulo": "¿Cómo llegó la Estatua de la Libertad a Nueva York?",
+  "escenas": [
+    {
+      "narracion": "La Estatua de la Libertad llegó a Nueva York desarmada… en 214 cajas.",
+      "texto_pantalla": "214 CAJAS",
+      "busqueda_video": "statue of liberty",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Fue un regalo de Francia. La diseñó el escultor Bartholdi, y su esqueleto de hierro lo hizo Gustave Eiffel: el mismo de la torre.",
+      "texto_pantalla": "EL ESQUELETO DE EIFFEL",
+      "busqueda_video": "eiffel tower paris",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Primero la armaron completa en París, y después la desarmaron en unas trescientas cincuenta piezas.",
+      "texto_pantalla": "350 PIEZAS",
+      "busqueda_video": "workshop metal",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "En 1885 cruzó el Atlántico en un barco francés, el Isère, y llegó a Nueva York en junio.",
+      "texto_pantalla": "CRUZA EL ATLÁNTICO",
+      "busqueda_video": "ship ocean waves",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Pero había un problema: el pedestal no estaba listo. Faltaba dinero.",
+      "texto_pantalla": "¡FALTA EL PEDESTAL!",
+      "busqueda_video": "new york harbor",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Entonces el periódico de Joseph Pulitzer pidió donaciones: más de ciento veinte mil personas aportaron, la mayoría con menos de un dólar.",
+      "texto_pantalla": "120 000 DONANTES",
+      "busqueda_video": "old newspaper",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Las cajas esperaron casi un año. En 1886, por fin, la armaron pieza por pieza sobre su pedestal.",
+      "texto_pantalla": "PIEZA POR PIEZA",
+      "busqueda_video": "statue of liberty construction",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Y un detalle: no era verde. Era color cobre brillante, como una moneda nueva. El aire y la lluvia la cubrieron con la pátina verde que vemos hoy.",
+      "texto_pantalla": "¡ERA COLOR COBRE!",
+      "busqueda_video": "copper coins",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Qué monumento quieres que expliquemos?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "new york skyline",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "La estatua fue un regalo de Francia; diseño de Frédéric Auguste Bartholdi y estructura interna de hierro de Gustave Eiffel.",
+    "Se ensambló completa en París (terminada en 1884) y luego se desmontó en unas 350 piezas, embaladas en 214 cajas.",
+    "Viajó en la fragata francesa Isère y llegó a Nueva York el 17 de junio de 1885.",
+    "El pedestal no estaba terminado por falta de fondos; la campaña del periódico The World de Joseph Pulitzer reunió donaciones de más de 120 000 personas, la mayoría de menos de un dólar.",
+    "Se reensambló sobre el pedestal y se inauguró el 28 de octubre de 1886.",
+    "Su piel de cobre era originalmente de color cobrizo; la pátina verde (verdín) se formó por oxidación en las décadas siguientes (hacia 1906 ya estaba verde)."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "tema": "Por qué algunos trenes del Metro de Santiago usan neumáticos",
+  "titulo": "¿El Metro de Santiago anda con ruedas de auto?",
+  "escenas": [
+    {
+      "narracion": "Algunos trenes del Metro de Santiago no ruedan sobre fierro… ruedan sobre neumáticos, como un auto.",
+      "texto_pantalla": "¡RUEDAS DE AUTO!",
+      "busqueda_video": "subway train station",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Pasa en las líneas 1, 2 y 5. Usan una tecnología francesa, la misma del Metro de París.",
+      "texto_pantalla": "LÍNEAS 1, 2 Y 5",
+      "busqueda_video": "metro tunnel",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Bajo cada carro hay neumáticos que ruedan sobre unas pistas planas, no sobre rieles.",
+      "texto_pantalla": "PISTAS PLANAS",
+      "busqueda_video": "train wheels closeup",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Pero un neumático no sabe seguir la vía solo. Por eso, a los lados, tiene ruedas horizontales que se apoyan en unas barras guía.",
+      "texto_pantalla": "BARRAS GUÍA",
+      "busqueda_video": "subway tracks",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Y esas barras hacen doble trabajo: también llevan la electricidad que mueve al tren.",
+      "texto_pantalla": "+ ELECTRICIDAD",
+      "busqueda_video": "electric spark",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "¿Y si se pincha un neumático? Escondidas, tiene ruedas de acero que se apoyan en rieles normales, como respaldo.",
+      "texto_pantalla": "¿Y SI SE PINCHA?",
+      "busqueda_video": "flat tire",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "¿Por qué neumáticos? Agarran más: el tren acelera y frena más rápido, y sube pendientes más empinadas.",
+      "texto_pantalla": "MÁS AGARRE",
+      "busqueda_video": "train accelerating",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "A cambio, gastan más energía y calientan más los túneles. Sí: parte del calor de la Línea 1 viene de ahí.",
+      "texto_pantalla": "¿Y EL CALOR?",
+      "busqueda_video": "crowded subway",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Qué otra cosa del Metro te intriga?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "santiago chile city",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Las líneas 1, 2 y 5 del Metro de Santiago usan trenes de rodadura neumática; las líneas 3, 4, 4A y 6 usan rodadura férrea.",
+    "La tecnología neumática es de origen francés (la misma familia que el Metro de París; los primeros trenes NS-74 eran de Alsthom).",
+    "Los neumáticos ruedan sobre pistas de rodadura y el guiado se hace con ruedas horizontales contra barras guía laterales.",
+    "Las barras guía también sirven para la alimentación eléctrica del tren.",
+    "Los trenes tienen ruedas metálicas de seguridad que se apoyan en rieles convencionales (respaldo ante pinchazo y en desvíos).",
+    "La rodadura neumática permite mayor aceleración, frenado y pendientes, pero consume más energía y disipa más calor.",
+    "Verificar que el calor de la Línea 1 se atribuya en parte a la rodadura neumática (también influyen la frecuencia, la ocupación y la falta de ventilación)."
+  ]
+}
