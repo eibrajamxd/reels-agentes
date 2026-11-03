@@ -42,18 +42,32 @@ cp .env.example .env    # y rellena las claves
 ## 2. Crear la cuenta nueva de Instagram y conectarla
 
 1. Crea la cuenta y pásala a **Cuenta profesional → Creador** (Configuración → Tipo de cuenta).
-2. En https://developers.facebook.com crea una app (tipo *Business*) y añade el producto **Instagram → "API setup with Instagram login"**.
-3. Agrega tu cuenta de Instagram como tester y genera un **token** con los permisos:
-   `instagram_business_basic`, `instagram_business_content_publish`,
-   `instagram_business_manage_comments`, `instagram_business_manage_insights`.
-4. Obtén tu `IG_USER_ID`:
+2. En https://developers.facebook.com crea una app con el caso de uso **"Administrar mensajes y contenido en Instagram"**.
+3. Crea un **portfolio comercial** (lo pide Meta), vincúlalo a la app y agrega tu cuenta como **Evaluador de Instagram**
+   (acepta la invitación en instagram.com/accounts/manage_access → Invitaciones de prueba).
+
+**Opción A, recomendada: "API setup with Unified login"** (token de usuario del sistema que no caduca)
+
+4. Crea la configuración con la cuenta de Instagram como activo y los permisos `instagram_basic`,
+   `instagram_content_publish`, `instagram_manage_comments` e `instagram_manage_insights`. Genera el token (empieza con `EAA`).
+5. El `IG_USER_ID` es el identificador de la cuenta de Instagram que aparece en el portfolio comercial
+   (Configuración del negocio → Cuentas → Cuentas de Instagram).
+6. En `.env`: `IG_ACCESS_TOKEN`, `IG_USER_ID` e `IG_API_BASE=https://graph.facebook.com`.
+
+**Opción B: "API setup with Instagram login"** (token que empieza con `IG`, dura 60 días)
+
+4. Genera el token con `instagram_business_basic`, `instagram_business_content_publish`,
+   `instagram_business_manage_comments` e `instagram_business_manage_insights`.
+5. Obtén el `IG_USER_ID`:
    ```bash
    curl "https://graph.instagram.com/v23.0/me?fields=user_id,username&access_token=TU_TOKEN"
    ```
-5. Pon `IG_ACCESS_TOKEN` e `IG_USER_ID` en `.env`. El token largo dura 60 días; renuévalo antes:
+6. En `.env`: `IG_ACCESS_TOKEN`, `IG_USER_ID` e `IG_API_BASE=https://graph.instagram.com`. Renueva el token antes de 60 días:
    ```bash
    curl "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=TU_TOKEN"
    ```
+
+El token es una contraseña: guárdalo solo en `.env` (que no se sube a GitHub) y nunca lo compartas.
 
 El video se sube directo desde tu PC (carga reanudable), **no necesitas hosting**.
 
