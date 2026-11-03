@@ -3,7 +3,7 @@
   "titulo": "¿Cómo pagan el metro en Tokio sin detenerse?",
   "escenas": [
     {
-      "narracion": "En la estación más concurrida del mundo, en Tokio, pasan más de tres millones de personas al día… y casi nadie se detiene en los torniquetes.",
+      "narracion": "En la estación más concurrida del mundo, en Tokio, pasan más de tres millones de personas al día… y casi nadie se detiene.",
       "texto_pantalla": "3 MILLONES AL DÍA",
       "busqueda_video": "tokyo station crowd",
       "color": "#FFD400"
@@ -33,7 +33,7 @@
       "color": "#FF6B35"
     },
     {
-      "narracion": "El truco: el torniquete no le pregunta nada a un servidor. El saldo va guardado en la propia tarjeta, y el cobro se calcula ahí mismo. Los datos viajan al sistema central después.",
+      "narracion": "El truco: el torniquete no le pregunta a ningún servidor. El saldo va guardado en la propia tarjeta y el cobro se calcula ahí mismo.",
       "texto_pantalla": "SIN ESPERAR AL SERVIDOR",
       "busqueda_video": "ticket gate japan",
       "color": "#FFD400"
@@ -45,7 +45,7 @@
       "color": "#4DD0E1"
     },
     {
-      "narracion": "Hoy la Suica también vive en el celular, y sirve para pagar en tiendas, máquinas de bebidas y hasta taxis.",
+      "narracion": "Hoy la Suica también vive en el celular, y sirve para pagar en tiendas, máquinas de bebidas y taxis.",
       "texto_pantalla": "EN TU CELULAR",
       "busqueda_video": "vending machine japan",
       "color": "#7CFC00"
