@@ -178,6 +178,7 @@ def generar_ass(escenas, voces, ruta: Path, total: float):
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
     t0 = 0.0
+    subs = []  # (inicio_cs, fin_cs, texto) de todos los subtítulos, en orden
     for escena, (_, dur, palabras) in zip(escenas, voces):
         r, g, b = _hex(escena.get("color", "#FFD400"))
         acento = f"&H00{b:02X}{g:02X}{r:02X}&"
@@ -190,16 +191,25 @@ def generar_ass(escenas, voces, ruta: Path, total: float):
         # Subtítulos palabra por palabra con la palabra activa resaltada
         for bloque in _bloques(palabras):
             for j, (ini, fin, _) in enumerate(bloque):
-                sig = bloque[j + 1][0] if j + 1 < len(bloque) else fin + 0.12
                 partes = []
                 for k, (_, _, w) in enumerate(bloque):
                     w = _esc(w.upper())
                     partes.append(f"{{\\c{acento}\\fscx108\\fscy108}}{w}{{\\c&H00FFFFFF&\\fscx100\\fscy100}}" if k == j else w)
-                lineas.append(
-                    f"Dialogue: 0,{_t(t0 + ini)},{_t(t0 + max(sig, ini + 0.08))},Sub,,0,0,0,,"
-                    f"{{\\pos({W // 2},{int(H * 0.64)})}}" + " ".join(partes)
-                )
+                inicio = round((t0 + ini) * 100)
+                fin_cs = round((t0 + min(fin + 0.35, dur)) * 100)
+                subs.append([inicio, fin_cs, f"{{\\pos({W // 2},{int(H * 0.64)})}}" + " ".join(partes)])
         t0 += dur
+    # Un solo subtítulo en pantalla a la vez: cada uno termina justo cuando empieza el siguiente.
+    subs.sort(key=lambda x: x[0])
+    for i, (ini, fin, texto) in enumerate(subs):
+        if i + 1 < len(subs):
+            siguiente = subs[i + 1][0]
+            if siguiente - fin < 25:  # huecos cortos (<0.25 s) se cierran para evitar parpadeo
+                fin = siguiente
+            fin = min(fin, siguiente)  # y nunca se encima con el siguiente
+        if fin <= ini:
+            continue
+        lineas.append(f"Dialogue: 0,{_t(ini / 100)},{_t(fin / 100)},Sub,,0,0,0,,{texto}")
     lineas.append(f"Dialogue: 0,{_t(0)},{_t(total)},Marca,,0,0,0,,{_esc(CANAL_HANDLE)}")
     ruta.write_text("\n".join(lineas), encoding="utf-8")
 
