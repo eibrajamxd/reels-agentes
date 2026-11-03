@@ -17,7 +17,7 @@
       "animacion": "A.bg('#06202a', '#03080c');\nconst cx = 540, cy = 760, R = 310 * A.pop(0, 0.7);\nconst placas = A.k('placas', 1.5), cm = A.k('centimetros', 3), unas = A.k('unas', 5);\nA.circle(cx, cy, R, { fill: '#0f4c63', glow: 60, glowColor: A.accent });\nif (R > 1) {\n  ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.clip();\n  const r = A.rand(3);\n  for (let i = 0; i < 8; i++) {\n    const bx = ((r() * 1000 + t * 45) % 1000) - 500 + cx, by = cy - 250 + r() * 500, rr = 50 + r() * 80;\n    A.circle(bx, by, rr, { fill: '#2f8a57' }); A.circle(bx + rr * 0.7, by + rr * 0.4, rr * 0.7, { fill: '#2f8a57' });\n  }\n  const bordes = [\n    [[cx - 320, cy - 120], [cx - 130, cy - 60], [cx - 40, cy - 180], [cx + 120, cy - 120], [cx + 320, cy - 200]],\n    [[cx - 320, cy + 90], [cx - 90, cy + 140], [cx + 30, cy + 40], [cx + 200, cy + 120], [cx + 320, cy + 60]],\n    [[cx - 40, cy - 180], [cx - 10, cy - 20], [cx + 30, cy + 40], [cx + 10, cy + 320]],\n  ];\n  bordes.forEach((b, i) => A.line(b, { stroke: A.accent, lw: 10, glow: 25, progress: A.p(placas + i * 0.25, 0.8) }));\n  const sombra = ctx.createRadialGradient(cx - 120, cy - 140, 40, cx, cy, R);\n  sombra.addColorStop(0, 'rgba(255,255,255,0.12)'); sombra.addColorStop(1, 'rgba(0,0,0,0.5)');\n  ctx.fillStyle = sombra; ctx.fillRect(cx - R, cy - R, 2 * R, 2 * R);\n  ctx.restore();\n}\nA.circle(cx, cy, R, { stroke: 'rgba(255,255,255,0.35)', lw: 4 });\nconst pa = A.p(placas + 0.9, 0.5);\nA.arrow(cx - 230, cy - 20, cx - 90 + Math.sin(t * 3) * 12, cy - 20, { progress: pa, color: '#fff', lw: 12 });\nA.arrow(cx + 230, cy + 60, cx + 90 - Math.sin(t * 3) * 12, cy + 60, { progress: pa, color: '#fff', lw: 12 });\nconst pr = A.p(cm, 1.4), al = A.p(cm, 0.3);\nA.rect(170, 1400, 740, 70, { r: 14, stroke: 'rgba(255,255,255,0.6)', lw: 4, alpha: al });\nA.rect(170, 1400, Math.max(740 * pr, 1), 70, { r: 14, fill: A.accent, alpha: 0.95 * al });\nfor (let i = 0; i <= 10; i++) A.line([[170 + i * 74, 1478], [170 + i * 74, 1478 + (i % 5 ? 18 : 34)]], { stroke: '#fff', lw: 4, alpha: al });\nA.text('≈ ' + A.counter(0, 5, pr) + ' cm / año', 540, 1575, { size: 66, alpha: al });\nA.label('= LO QUE CRECEN TUS UÑAS', 540, 1680, { scale: A.pop(unas), size: 42 });\n"
     },
     {
-      "narracion": "En los bordes, las placas se traban por la fricción, y la presión se acumula durante años, incluso siglos.",
+      "narracion": "En Chile, la placa de Nazca se mete bajo la Sudamericana. En ese borde se traban por la fricción, y la presión se acumula durante años, incluso siglos.",
       "texto_pantalla": "PRESIÓN ACUMULADA",
       "busqueda_video": "cracked rock cliff",
       "color": "#FF6B35",
@@ -68,6 +68,7 @@
   ],
   "datos_a_verificar": [
     "Las placas tectónicas se mueven unos centímetros al año (aprox. 2–10 cm), comparable al crecimiento de las uñas.",
+    "Frente a Chile, la placa de Nazca subduce bajo la placa Sudamericana (unos 6–8 cm por año).",
     "Los sismos tectónicos ocurren cuando la roca en una falla se rompe tras acumular esfuerzo por fricción.",
     "Hipocentro = punto de ruptura bajo tierra; epicentro = punto en la superficie justo encima.",
     "Las ondas P llegan primero; las ondas S y superficiales causan la mayor parte del daño.",
