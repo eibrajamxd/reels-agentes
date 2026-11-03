@@ -134,12 +134,14 @@ def main():
     elif args.cmd == "priorizar":
         rutas = args.guiones
         if not rutas:
-            publicados = {guionista.slug(c["tema"]) for c in cm.leer_cola() if c["estado"] == "publicado"}
+            # fuera del ranking: lo ya publicado (por el sistema o a mano) y lo que ya está en la cola
+            publicados = {guionista.slug(c["tema"]) for c in cm.leer_cola()
+                          if c["estado"] in ("publicado", "programado", "pendiente_revision")}
             hoy = datetime.now(cm.TZ).date().isoformat()
             rutas, reservados = [], []
             for r in sorted(Path("guiones").glob("*.json")):
                 g = json.loads(r.read_text("utf-8"))
-                if guionista.slug(g["tema"]) in publicados:
+                if guionista.slug(g["tema"]) in publicados or g.get("publicado_manual"):
                     continue
                 if g.get("publicar_desde", "") > hoy:  # guion guardado para más adelante
                     reservados.append(f"{r.name} (desde {g['publicar_desde']})")

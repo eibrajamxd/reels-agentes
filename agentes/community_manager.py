@@ -208,11 +208,20 @@ def priorizar(rutas: list[str]) -> dict:
         guiones.append({"archivo": r, "titulo": g["titulo"],
                         "narracion": [e["narracion"] for e in g["escenas"]],
                         "titulares": [e["texto_pantalla"] for e in g["escenas"]]})
-    publicados = [c["tema"] for c in leer_cola() if c["estado"] == "publicado"]
+    from .config import DIR_GUIONES
+    publicados = [f"{c['publicar_en'][:16]} ({c['estado']}) {c['tema']}" for c in leer_cola()
+                  if c["estado"] in ("publicado", "programado", "pendiente_revision")]
+    for p in DIR_GUIONES.glob("*.json"):  # publicados a mano desde la app
+        g = json.loads(p.read_text("utf-8"))
+        if g.get("publicado_manual"):
+            publicados.append(f"{g['publicado_manual']} (publicado a mano) {g['tema']}")
     metricas = METRICAS.read_text("utf-8")[:6000] if METRICAS.exists() else "Aún no hay datos (cuenta nueva)."
     prompt = (
         f"Guiones candidatos:\n{json.dumps(guiones, ensure_ascii=False, indent=1)}\n\n"
-        f"Ya publicados: {json.dumps(publicados, ensure_ascii=False)}\nMétricas: {metricas}\n\n"
+        f"Ya publicados o programados (en orden de fecha): {json.dumps(sorted(publicados), ensure_ascii=False)}\n"
+        f"Métricas: {metricas}\n\n"
+        "El ranking es para decidir qué viene DESPUÉS del último programado: considera la variedad de "
+        "temas respecto de los anteriores (no repetir categoría seguida).\n"
         "Evalúa cada guion como Reel para una cuenta nueva en crecimiento: fuerza del gancho en los primeros "
         "2 segundos, curiosidad universal (¿le pasa a todo el mundo?), probabilidad de que lo guarden y lo "
         "compartan, y potencial de comentarios. Ordénalos de mayor a menor puntaje y elige cuál publicar primero. "
