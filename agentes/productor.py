@@ -231,8 +231,11 @@ def producir_video(guion: dict, con_voz: bool = True, musica: str | None = None,
         from .narrador import dirigir_locucion
 
         print("🎭 Agente Narrador dirigiendo la locución...")
-        dirigir_locucion(guion)
-        guardar_guion()
+        try:
+            dirigir_locucion(guion)
+            guardar_guion()
+        except Exception as err:  # sin clave de Claude o sin conexión: se lee la narración original
+            print(f"   ! No se pudo dirigir la locución ({type(err).__name__}); uso la narración original.")
         for i, e in enumerate(escenas):
             loc = e.get("locucion", {})
             print(f"   {i + 1}. {loc.get('intencion', '')}  ({loc.get('velocidad', '')}, {loc.get('tono', '')})")
