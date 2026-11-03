@@ -100,6 +100,7 @@ def main():
     c.add_argument("--sin-animacion", action="store_true", help="solo video de stock / fondos")
     vo = sub.add_parser("voces"); vo.add_argument("--frase", default=narrador.FRASE_MUESTRA)
     vo.add_argument("--solo-espanol", action="store_true")
+    vo.add_argument("--pais", help="código de país, p. ej. CL para voces de Chile")
     ev = sub.add_parser("elegir-voz"); ev.add_argument("nombre")
     se = sub.add_parser("semana", help="el CM planifica la semana y produce cada Reel")
     se.add_argument("temas", nargs="*", help="temas fijos en orden (texto o ruta de guion)")
@@ -122,7 +123,7 @@ def main():
         crear(args.tema, args.guion, args.sin_voz, args.sin_publicar, args.sin_animacion)
     elif args.cmd == "voces":
         print("🎧 Grabando la misma frase con cada voz...")
-        pagina = narrador.presentar_voces(args.frase, args.solo_espanol)
+        pagina = narrador.presentar_voces(args.frase, args.solo_espanol, args.pais)
         print(f"\n✅ Abre esta página para escucharlas y comparar:\n   {pagina}\n"
               "Luego elige con: python main.py elegir-voz <nombre>")
     elif args.cmd == "elegir-voz":

@@ -124,13 +124,15 @@ async def _listar():
     return [v for v in voces if v["Locale"].startswith("es-") or "Multilingual" in v["ShortName"]]
 
 
-def presentar_voces(frase: str = FRASE_MUESTRA, solo_espanol: bool = False) -> Path:
+def presentar_voces(frase: str = FRASE_MUESTRA, solo_espanol: bool = False, pais: str | None = None) -> Path:
     """Graba la frase con cada voz y crea salida/voces/index.html para escucharlas y comparar."""
     carpeta = DIR_SALIDA / "voces"
     carpeta.mkdir(parents=True, exist_ok=True)
     voces = asyncio.run(_listar())
     if solo_espanol:
         voces = [v for v in voces if v["Locale"].startswith("es-")]
+    if pais:  # p. ej. "CL" -> solo es-CL (más la voz actual del canal, para comparar)
+        voces = [v for v in voces if v["Locale"].upper().endswith("-" + pais.upper()) or v["ShortName"] == VOZ]
     voces.sort(key=lambda v: (not v["Locale"].startswith("es-"), v["Locale"], v["Gender"]))
     filas = []
     for v in voces:
