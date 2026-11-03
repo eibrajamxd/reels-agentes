@@ -278,19 +278,21 @@ def publicar_reel(video: str, caption: str, primer_comentario: str = "") -> str:
                caption=caption, share_to_feed="true", thumb_offset=800)
     cid = cont["id"]
     datos = Path(video).read_bytes()
+    # Instagram devuelve la URL de subida en "uri"; se usa tal cual (si falta, se arma con la versión configurada).
     up = requests.post(
-        f"https://rupload.facebook.com/ig-api-upload/{IG_API_VERSION}/{cid}",
+        cont.get("uri") or f"https://rupload.facebook.com/ig-api-upload/{IG_API_VERSION}/{cid}",
         headers={"Authorization": f"OAuth {IG_ACCESS_TOKEN}", "offset": "0", "file_size": str(len(datos))},
         data=datos, timeout=600,
     )
     if not up.ok:
         raise RuntimeError(f"Subida falló {up.status_code}: {up.text}")
     for _ in range(60):  # hasta ~10 min de procesamiento
-        estado = _ig("GET", cid, fields="status_code,status").get("status_code")
+        info = _ig("GET", cid, fields="status_code,status")
+        estado = info.get("status_code")
         if estado == "FINISHED":
             break
         if estado in ("ERROR", "EXPIRED"):
-            raise RuntimeError(f"Instagram no pudo procesar el video: {estado}")
+            raise RuntimeError(f"Instagram no pudo procesar el video: {estado} — {info.get('status', '')}")
         time.sleep(10)
     else:
         raise RuntimeError("Tiempo de espera agotado procesando el video")

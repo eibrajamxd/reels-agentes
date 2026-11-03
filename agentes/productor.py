@@ -188,16 +188,19 @@ def generar_ass(escenas, voces, ruta: Path, total: float):
             f"{{\\3c{acento}\\4c{acento}\\fad(180,120)\\t(0,180,\\fscx100\\fscy100)\\fscx85\\fscy85}}"
             f"{_esc(escena['texto_pantalla'].upper())}"
         )
-        # Subtítulos palabra por palabra con la palabra activa resaltada
+        # Subtítulos palabra por palabra con la palabra activa resaltada solo por color:
+        # sin cambiar su tamaño, para que el bloque no se recorra al avanzar de palabra.
         for bloque in _bloques(palabras):
             for j, (ini, fin, _) in enumerate(bloque):
                 partes = []
                 for k, (_, _, w) in enumerate(bloque):
                     w = _esc(w.upper())
-                    partes.append(f"{{\\c{acento}\\fscx108\\fscy108}}{w}{{\\c&H00FFFFFF&\\fscx100\\fscy100}}" if k == j else w)
+                    partes.append(f"{{\\c{acento}}}{w}{{\\c&H00FFFFFF&}}" if k == j else w)
                 inicio = round((t0 + ini) * 100)
                 fin_cs = round((t0 + min(fin + 0.35, dur)) * 100)
-                subs.append([inicio, fin_cs, f"{{\\pos({W // 2},{int(H * 0.64)})}}" + " ".join(partes)])
+                # Fundido corto solo al entrar un bloque nuevo, no entre palabras del mismo bloque
+                entrada = "\\fad(90,0)" if j == 0 else ""
+                subs.append([inicio, fin_cs, f"{{\\pos({W // 2},{int(H * 0.64)}){entrada}}}" + " ".join(partes)])
         t0 += dur
     # Un solo subtítulo en pantalla a la vez: cada uno termina justo cuando empieza el siguiente.
     subs.sort(key=lambda x: x[0])
@@ -307,7 +310,9 @@ def producir_video(guion: dict, con_voz: bool = True, musica: str | None = None,
         af = "[1:a]anull[a]"
     _ff(*entradas, "-filter_complex", f"{vf};{af}", "-map", "[v]", "-map", "[a]",
         "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", 19, "-profile:v", "high",
-        "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", 44100, "-movflags", "+faststart", final)
+        "-level", "4.1", "-r", FPS, "-g", FPS * 2, "-maxrate", "20M", "-bufsize", "40M", "-pix_fmt", "yuv420p",
+        # Especificación de Reels: AAC estéreo, 48 kHz como máximo, 128 kbps
+        "-c:a", "aac", "-b:a", "128k", "-ar", 48000, "-ac", 2, "-movflags", "+faststart", final)
 
     (carpeta / "guion.json").write_text(json.dumps(guion, ensure_ascii=False, indent=2), encoding="utf-8")
     shutil.rmtree(tmp, ignore_errors=True)
