@@ -16,14 +16,17 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 from .claude import pedir_json
-from .config import CANAL_NOMBRE, CHROMIUM_PATH
+from .config import CANAL_NOMBRE, CHROMIUM_PATH, ESTILO_ANIMACION
 
 W, H = 1080, 1920
 LIB = (Path(__file__).parent / "anim_lib.js").read_text(encoding="utf-8")
+# Biblioteca de dibujo del skill procedural-film (MIT): trazo a mano, blueprint, papel, sombreado.
+_FILM_LIB = Path(__file__).resolve().parent.parent / ".claude/skills/procedural-film/foundation/src/lib.js"
+FILM_LIB = _FILM_LIB.read_text(encoding="utf-8") if _FILM_LIB.exists() else ""
 HTML = f"""<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>html,body{{margin:0;background:#000}}</style></head>
-<body><canvas id="c" width="{W}" height="{H}"></canvas><script>{LIB}</script></body></html>"""
+<body><canvas id="c" width="{W}" height="{H}"></canvas><script>{FILM_LIB}</script><script>{LIB}</script></body></html>"""
 
 API_DOC = """Escribe SOLO el cuerpo de una función JavaScript `(ctx, t, A) => { ... }` que dibuja en un canvas
 2D de 1080x1920 el fotograma del instante t (segundos desde el inicio de la escena).
@@ -46,6 +49,12 @@ API disponible (objeto A):
 - Piezas listas: A.person(x,yPies,{scale,color}), A.bulb(x,y,{scale,on:0..1}), A.rainbow(cx,cy,r,{width,progress,from,to,alpha}),
   A.drop(x,y,r,{fill,stroke}), A.sun(x,y,r), A.ant(x,y,escala), A.ray([[x,y],...],{color,lw,progress}),
   A.follow(x,y,inicio,toque) botón "Seguir" que se presiona, A.ARCOIRIS (7 colores de rojo a violeta)
+- Estilo película (skill procedural-film): A.bg pinta un plano blueprint y A.line/A.circle/A.rect con trazo se
+  dibujan como tinta a mano con "boil". Para acabado de ilustración usa también A.lib (FILM.lib), con
+  ctx como primer argumento: A.lib.inkPath(ctx, pts, {width, color, closed, fill, draw}),
+  A.lib.hatch(ctx, pts, {angle, spacing, width, color}) para sombrear dentro de una forma,
+  A.lib.crossHatch(ctx, pts, {tone}), A.lib.stipple(ctx, pts, {...}), A.lib.glowDot(ctx, x, y, r, {...}),
+  y la paleta A.pal (navy, lineWhite, paleBlue, glow, magenta, ink, paper...). Sombrea las formas grandes con hatch.
 - También puedes usar ctx directamente (paths, gradientes, bezier...).
 
 ZONAS DE LA PANTALLA (obligatorio respetarlas):
@@ -162,7 +171,7 @@ def _hoja(cuadros, tiempos) -> bytes:
 
 
 def _datos_escena(escena: dict, dur: float, palabras) -> dict:
-    return {"dur": round(dur, 3), "accent": escena.get("color", "#FFD400"),
+    return {"dur": round(dur, 3), "accent": escena.get("color", "#FFD400"), "estilo": ESTILO_ANIMACION,
             "words": [[round(a, 3), round(b, 3), w] for a, b, w in palabras]}
 
 

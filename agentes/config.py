@@ -31,6 +31,8 @@ VELOCIDAD_VOZ = os.getenv("VELOCIDAD_VOZ", "+8%")
 PUBLICACIONES_MAX_POR_DIA = int(os.getenv("PUBLICACIONES_MAX_POR_DIA", "1"))
 # animacion = todas las escenas animadas | mixto = alterna animación y video de stock | broll = solo stock
 MODO_VISUAL = os.getenv("MODO_VISUAL", "animacion")
+# pelicula = acabado de ilustración a mano (skill procedural-film) | plano = gráficos planos
+ESTILO_ANIMACION = os.getenv("ESTILO_ANIMACION", "pelicula")
 CHROMIUM_PATH = os.getenv("CHROMIUM_PATH", "")  # solo si Playwright no encuentra su navegador
 REVISION_MANUAL = os.getenv("REVISION_MANUAL", "true").lower() == "true"
 

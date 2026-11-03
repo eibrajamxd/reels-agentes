@@ -185,7 +185,50 @@
         ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H); ctx.restore();
       },
     };
+    if (scene.estilo !== 'plano' && window.FILM && FILM.lib) aplicarEstiloPelicula(A, ctx, scene);
     return A;
+  }
+
+  // Estilo "película": la biblioteca de dibujo del skill procedural-film (FILM.lib) da a las mismas
+  // escenas un acabado de ilustración a mano: plano blueprint con retícula y círculos guía, trazos de
+  // tinta con temblor de pulso y "boil" a 12 fps (la línea respira como en animación dibujada).
+  function aplicarEstiloPelicula(A, ctx, scene) {
+    const lib = FILM.lib, plano = { line: A.line, circle: A.circle, rect: A.rect };
+    let n = 0; const semilla = () => 17 + (n++) * 7;  // misma semilla para el mismo objeto en cada fotograma
+    A.lib = lib; A.pal = lib.pal;
+    A.bg = function (top = '#0d1b2a') {
+      lib.blueprint(ctx, { seed: 5, color: lib.mix(lib.pal.navy, top, 0.35) });
+      const g = ctx.createRadialGradient(W / 2, H * 0.42, 50, W / 2, H * 0.42, H * 0.6);
+      g.addColorStop(0, lib.rgba(A.accent, 0.10)); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    };
+    A.line = function (pts, o = {}) {
+      if (pts.length < 2) return;
+      const prog = o.progress === undefined ? 1 : clamp(o.progress); if (prog <= 0) return;
+      const lw = o.lw || 6, sd = semilla();
+      if (o.dash || lw > 30) return plano.line(pts, o);  // cables gruesos y punteados se quedan lisos
+      ctx.save();
+      if (o.glow) { ctx.shadowColor = o.glowColor || o.stroke || A.accent; ctx.shadowBlur = o.glow; }
+      lib.inkPath(ctx, pts, { width: lw * 0.9, color: o.stroke || A.accent, alpha: o.alpha === undefined ? 1 : clamp(o.alpha),
+        seed: sd, smooth: false, draw: prog, taper: Math.min(10, lw * 1.2), wobble: 1.6, tremble: 0.5 });
+      ctx.restore();
+    };
+    A.circle = function (x, y, r, o = {}) {
+      if (r <= 0) return;
+      if (r < 22 || (!o.stroke && !o.fill)) return plano.circle(x, y, r, o);
+      const sd = semilla();
+      if (o.fill) plano.circle(x, y, r, { fill: o.fill, alpha: o.alpha, glow: o.glow, glowColor: o.glowColor });
+      ctx.save(); if (o.stroke && o.glow) { ctx.shadowColor = o.glowColor || o.stroke; ctx.shadowBlur = o.glow; }
+      lib.inkCircle(ctx, x, y, r, { width: o.stroke ? (o.lw || 6) * 0.9 : 2.4, color: o.stroke || lib.pal.lineWhite,
+        alpha: (o.alpha === undefined ? 1 : clamp(o.alpha)) * (o.stroke ? 1 : 0.45), seed: sd, wobble: 1.4, taper: 0 });
+      ctx.restore();
+    };
+    A.rect = function (x, y, w, h, o = {}) {
+      if (!o.stroke || w < 30 || h < 30) return plano.rect(x, y, w, h, o);
+      if (o.fill) plano.rect(x, y, w, h, Object.assign({}, o, { stroke: null }));
+      lib.inkPath(ctx, lib.rrectPts(x, y, w, h, Math.min(o.r || 0, w / 2, h / 2), 18), { closed: true, width: (o.lw || 6) * 0.9,
+        color: o.stroke, alpha: o.alpha === undefined ? 1 : clamp(o.alpha), seed: semilla(), wobble: 1.4, taper: 0 });
+    };
   }
 
   window.__escena = null;
@@ -199,6 +242,7 @@
     ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
     const z = 1 + 0.035 * clamp(t / Math.max(e.scene.dur, 0.1));
     ctx.translate(W / 2, H * 0.42); ctx.scale(z, z); ctx.translate(-W / 2, -H * 0.42);
+    if (window.FILM) { FILM.W = W; FILM.H = H; FILM.frameT = t; }
     e.fn(ctx, t, make(ctx, t, e.scene));
   };
   window.lote = function (t0, n, fps, calidad) {
