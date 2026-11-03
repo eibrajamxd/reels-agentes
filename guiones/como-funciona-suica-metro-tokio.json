@@ -1,0 +1,70 @@
+{
+  "tema": "Cómo funciona el pago del metro en Tokio (Suica)",
+  "titulo": "¿Cómo pagan el metro en Tokio sin detenerse?",
+  "escenas": [
+    {
+      "narracion": "En la estación más concurrida del mundo, en Tokio, pasan más de tres millones de personas al día… y casi nadie se detiene en los torniquetes.",
+      "texto_pantalla": "3 MILLONES AL DÍA",
+      "busqueda_video": "tokyo station crowd",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "El secreto es una tarjeta: la Suica. Su nombre juega con 'suisui', que en japonés suena a 'fluido, sin trabas'.",
+      "texto_pantalla": "SUICA = SUISUI",
+      "busqueda_video": "japan metro card",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Como tu bip!, no tiene batería: el lector crea un campo magnético que la enciende apenas la acercas.",
+      "texto_pantalla": "SIN BATERÍA",
+      "busqueda_video": "contactless card reader",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Usa una tecnología de Sony llamada FeliCa, diseñada desde el principio para ser rapidísima.",
+      "texto_pantalla": "TECNOLOGÍA FELICA",
+      "busqueda_video": "electronics circuit",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "¿Qué tan rápida? Todo el pago se resuelve en unas dos décimas de segundo: lo que dura un parpadeo.",
+      "texto_pantalla": "0,2 SEGUNDOS",
+      "busqueda_video": "eye blink closeup",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "El truco: el torniquete no le pregunta nada a un servidor. El saldo va guardado en la propia tarjeta, y el cobro se calcula ahí mismo. Los datos viajan al sistema central después.",
+      "texto_pantalla": "SIN ESPERAR AL SERVIDOR",
+      "busqueda_video": "ticket gate japan",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Y muchos torniquetes están abiertos todo el tiempo: solo se cierran si algo falla. Así no frenan a nadie.",
+      "texto_pantalla": "SIEMPRE ABIERTOS",
+      "busqueda_video": "commuters walking",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Hoy la Suica también vive en el celular, y sirve para pagar en tiendas, máquinas de bebidas y hasta taxis.",
+      "texto_pantalla": "EN TU CELULAR",
+      "busqueda_video": "vending machine japan",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona el mundo. ¿Te gustaría que la bip! fuera así de rápida?",
+      "texto_pantalla": "¿Y LA BIP!?",
+      "busqueda_video": "santiago metro",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "La estación de Shinjuku (Tokio) es la más concurrida del mundo, con más de 3 millones de pasajeros diarios (récord Guinness, ~3,5 millones).",
+    "Suica fue lanzada por JR East en noviembre de 2001; el nombre viene de 'Super Urban Intelligent CArd' y del japonés 'suisui' (fluidamente).",
+    "Es una tarjeta sin batería: se alimenta por inducción del campo del lector (igual que la bip!, que es una tarjeta sin contacto).",
+    "Usa la tecnología FeliCa de Sony.",
+    "JR East diseñó el sistema para completar la transacción en el torniquete en unos 0,2 segundos (se cita también ~0,1 s para la lectura de la tarjeta).",
+    "El saldo se almacena en la tarjeta y el torniquete procesa el cobro localmente; los datos se envían después al servidor central.",
+    "Muchos torniquetes japoneses son de tipo 'normalmente abierto': las puertas solo se cierran ante un error o saldo insuficiente.",
+    "Suica puede usarse en el celular (Mobile Suica, Apple Pay/Google Pay compatibles) y para pagar en tiendas, máquinas expendedoras y taxis."
+  ]
+}
