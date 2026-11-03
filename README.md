@@ -98,6 +98,9 @@ python main.py semana "cómo funciona la electricidad" "cómo se forma un arcoí
 python main.py semana ... --solo-plan   # solo ver el calendario, sin producir
 
 python main.py ideas 15      # banco de temas con su gancho
+
+# Guardar un guion para una fecha: agrega "publicar_desde": "AAAA-MM-DD" al JSON del guion.
+# Hasta ese día, `priorizar` no lo considera (ej.: Santa Teresa de Los Andes, desde 2027-09-20).
 python main.py auto 5        # produce y programa los 5 siguientes temas
 python main.py cola          # calendario de publicaciones
 python main.py aprobar a1b2c3d4

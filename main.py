@@ -134,8 +134,18 @@ def main():
         rutas = args.guiones
         if not rutas:
             publicados = {guionista.slug(c["tema"]) for c in cm.leer_cola() if c["estado"] == "publicado"}
-            rutas = [str(r) for r in sorted(Path("guiones").glob("*.json"))
-                     if guionista.slug(json.loads(r.read_text("utf-8"))["tema"]) not in publicados]
+            hoy = datetime.now(cm.TZ).date().isoformat()
+            rutas, reservados = [], []
+            for r in sorted(Path("guiones").glob("*.json")):
+                g = json.loads(r.read_text("utf-8"))
+                if guionista.slug(g["tema"]) in publicados:
+                    continue
+                if g.get("publicar_desde", "") > hoy:  # guion guardado para más adelante
+                    reservados.append(f"{r.name} (desde {g['publicar_desde']})")
+                    continue
+                rutas.append(str(r))
+            if reservados:
+                print("📦 Guardados para más adelante (no se evalúan): " + ", ".join(reservados))
         print(f"📊 Community Manager evaluando {len(rutas)} guiones...")
         r = cm.priorizar(rutas)
         for k, g in enumerate(r["ranking"], 1):
