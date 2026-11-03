@@ -26,7 +26,7 @@ IG_API_VERSION = os.getenv("IG_API_VERSION", "v23.0")
 CANAL_NOMBRE = os.getenv("CANAL_NOMBRE", "Así Funciona")
 CANAL_HANDLE = os.getenv("CANAL_HANDLE", "@asifunciona")
 ZONA_HORARIA = os.getenv("ZONA_HORARIA", "America/Mexico_City")
-VOZ = os.getenv("VOZ", "")  # se elige con `python main.py voces` + `elegir-voz`
+VOZ = os.getenv("VOZ", "es-MX-JorgeNeural")  # voz elegida del canal; cámbiala con `voces` + `elegir-voz`
 VELOCIDAD_VOZ = os.getenv("VELOCIDAD_VOZ", "+8%")
 PUBLICACIONES_MAX_POR_DIA = int(os.getenv("PUBLICACIONES_MAX_POR_DIA", "1"))
 # animacion = todas las escenas animadas | mixto = alterna animación y video de stock | broll = solo stock

@@ -57,15 +57,17 @@ cp .env.example .env    # y rellena las claves
 
 El video se sube directo desde tu PC (carga reanudable), **no necesitas hosting**.
 
-## 3. Elegir la voz del canal (primer paso)
+## 3. Voz del canal
+
+Voz elegida: **es-MX-JorgeNeural** (hombre, español de México, clara y neutra). Ya viene configurada.
+Para escuchar alternativas o cambiarla más adelante:
 
 ```bash
 python main.py voces                 # graba la misma frase con cada voz y crea salida/voces/index.html
 python main.py voces --frase "Tu frase de prueba"   # opcional: prueba con otro texto
 python main.py elegir-voz es-MX-JorgeNeural         # guarda la elegida en .env
 ```
-Abre `salida/voces/index.html` en el navegador y compáralas. Hasta que elijas una, el sistema no
-genera videos con voz. La velocidad base se ajusta con `VELOCIDAD_VOZ` en `.env`.
+Abre `salida/voces/index.html` en el navegador y compáralas. La velocidad base se ajusta con `VELOCIDAD_VOZ` en `.env`.
 
 ## 4. Uso
 
