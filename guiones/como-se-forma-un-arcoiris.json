@@ -1,0 +1,78 @@
+{
+  "tema": "Cómo se forma un arcoíris",
+  "titulo": "¿Por qué vemos el arcoíris?",
+  "escenas": [
+    {
+      "narracion": "Un arcoíris no está en un lugar fijo: cada persona ve su propio arcoíris.",
+      "texto_pantalla": "CADA QUIEN EL SUYO",
+      "busqueda_video": "rainbow over field",
+      "color": "#FFD400",
+      "animacion": "A.bg('#0d2233', '#04080d');\nconst lug = A.k('lugar', 1.2), cada = A.k('cada', 1.9), pro = A.k('propio', A.dur - 0.8);\nA.rect(0, 1020, A.W, 110, { fill: '#173d2a' });\nA.person(330, 1030, { scale: A.pop(0.1) });\nA.rainbow(330, 1000, 380, { width: 20, progress: A.p(0.2, 1.0) });\nA.label('TU ARCOÍRIS', 330, 1390, { scale: A.pop(lug), size: 34 });\nA.person(780, 1030, { scale: A.pop(cada), color: '#ffd9a0' });\nA.rainbow(780, 1000, 380, { width: 20, progress: A.p(cada + 0.1, 1.0), alpha: 0.95 });\nA.label('EL SUYO', 780, 1390, { scale: A.pop(cada + 0.3), size: 34, bg: '#ffd9a0' });\nA.label('¡NO ES EL MISMO!', 540, 1560, { scale: A.pop(pro), size: 50 });\n"
+    },
+    {
+      "narracion": "Para verlo necesitas tres cosas: el Sol a tu espalda, gotas de lluvia frente a ti y el Sol bajo en el cielo.",
+      "texto_pantalla": "3 INGREDIENTES",
+      "busqueda_video": "sun rain shower",
+      "color": "#4DD0E1",
+      "animacion": "A.bg('#0a2a3a', '#04080d');\nconst sol = A.k('sol', 1.2), got = A.k('gotas', 2.3), baj = A.k('bajo', 3.4);\nA.rect(0, 1000, A.W, 130, { fill: '#173d2a' });\nA.sun(140, 860 - A.p(0, 1) * 40, 70 * A.pop(sol - 0.3));\nA.person(470, 1010, { scale: 0.9 });\nA.arrow(560, 760, 700, 760, { progress: A.p(got, 0.4), color: '#fff', lw: 8 });\nA.particles(40, 2, (i, r) => {\n  const x = 720 + r() * 320, y = 420 + ((t * 600 + r() * 600) % 600);\n  A.line([[x, y], [x - 6, y + 28]], { stroke: '#9fd8ff', lw: 4, alpha: A.p(got, 0.4) });\n});\nA.rainbow(880, 1000, 300, { width: 16, progress: A.p(baj + 0.3, 1), alpha: 0.9 });\nconst items = [['SOL A TU ESPALDA', sol], ['LLUVIA ENFRENTE', got], ['SOL BAJO', baj]];\nitems.forEach(([txt, k], i) => {\n  const y = 1390 + i * 115, s = A.pop(k);\n  A.with(() => {\n    A.circle(190, y, 34, { fill: A.accent });\n    A.line([[173, y], [186, y + 15], [210, y - 14]], { stroke: '#111', lw: 8 });\n    A.text(txt, 250, y, { size: 46, align: 'left' });\n  }, { x: 190, y, scale: s });\n});\n"
+    },
+    {
+      "narracion": "La luz blanca del Sol en realidad es una mezcla de todos los colores.",
+      "texto_pantalla": "LUZ = TODOS LOS COLORES",
+      "busqueda_video": "prism light spectrum",
+      "color": "#FFD400",
+      "animacion": "A.bg('#111827', '#05070a');\nconst luz = A.k('luz', 0.6), mez = A.k('mezcla', 2.6), col = A.k('colores', A.dur - 0.6);\n// prisma\nconst px = 600, py = 800;\nctx.save(); ctx.fillStyle = 'rgba(200,230,255,0.15)'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 6;\nctx.beginPath(); ctx.moveTo(px, py - 220); ctx.lineTo(px + 190, py + 130); ctx.lineTo(px - 190, py + 130); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();\nA.ray([[40, 880], [510, 780]], { color: '#fff', lw: 16, progress: A.p(luz, 0.6) });\nA.label('LUZ BLANCA', 230, 650, { scale: A.pop(luz + 0.2), size: 36, bg: '#fff' });\nconst pm = A.p(mez, 0.8);\nA.ARCOIRIS.forEach((c, i) => A.ray([[620, 800], [620 + (1040 - 620) * pm, 700 + i * 55 * pm + (1 - pm) * 100]], { color: c, lw: 14, glow: 15, alpha: pm > 0 ? 1 : 0 }));\nA.label('= TODOS LOS COLORES', 540, 1450, { scale: A.pop(col), size: 46 });\nA.ARCOIRIS.forEach((c, i) => A.circle(240 + i * 100, 1600, 34 * A.pop(col + 0.2 + i * 0.06), { fill: c }));\n"
+    },
+    {
+      "narracion": "Cuando entra en una gota, la luz se dobla. Y cada color se dobla distinto: el violeta mucho, el rojo un poco.",
+      "texto_pantalla": "SE DOBLA",
+      "busqueda_video": "water drop macro",
+      "color": "#B388FF",
+      "animacion": "A.bg('#140d2a', '#05040a');\nconst ent = A.k('entra', 0.5), dob = A.k('dobla', 1.6), col = A.k('color', 2.6), vio = A.k('violeta', 3.6), roj = A.k('rojo', A.dur - 0.8);\nconst cx = 600, cy = 800, R = 300;\nA.circle(cx, cy, R * A.pop(0, 0.6), { fill: 'rgba(120,200,255,0.18)', stroke: '#bfe6ff', lw: 6 });\nconst hit = [cx - R * 0.9, cy - R * 0.44];\nA.ray([[40, hit[1]], hit], { color: '#fff', lw: 14, progress: A.p(ent, 0.5) });\nconst pd = A.p(dob, 0.6);\nif (t < col) A.ray([hit, [hit[0] + 480 * pd, hit[1] + 200 * pd]], { color: '#fff', lw: 12 });\nelse {\n  const ps = A.p(col, 0.6);\n  A.ray([hit, [hit[0] + 480 * ps, hit[1] + 120 * ps]], { color: '#FF3B30', lw: 12 });\n  A.ray([hit, [hit[0] + 440 * ps, hit[1] + 290 * ps]], { color: '#AF52DE', lw: 12 });\n}\nA.label('SE DOBLA', 280, 560, { scale: A.pop(dob), size: 40 });\nA.label('VIOLETA: MUCHO', 540, 1420, { scale: A.pop(vio), size: 44, bg: '#AF52DE', color: '#fff' });\nA.label('ROJO: POCO', 540, 1560, { scale: A.pop(roj), size: 44, bg: '#FF3B30', color: '#fff' });\n"
+    },
+    {
+      "narracion": "Adentro, la luz rebota en el fondo de la gota y sale de regreso hacia ti, ya separada en colores.",
+      "texto_pantalla": "REBOTA Y SE SEPARA",
+      "busqueda_video": "raindrops window light",
+      "color": "#4DD0E1",
+      "animacion": "A.bg('#06202a', '#03080c');\nconst reb = A.k('rebota', 1), fon = A.k('fondo', 1.6), sal = A.k('sale', 2.4), sep = A.k('separada', A.dur - 0.8);\nconst cx = 620, cy = 700, R = 300;\nA.circle(cx, cy, R, { fill: 'rgba(120,200,255,0.18)', stroke: '#bfe6ff', lw: 6 });\nconst a = [cx - 260, cy - 150], b = [cx + 250, cy - 20 + 0], c = [cx - 150, cy + 260];\nA.ray([[60, a[1]], a], { color: '#fff', lw: 14, progress: A.p(0, 0.5) });\nA.ray([a, b], { color: '#fff', lw: 12, progress: A.p(0.4, 0.5) });\nA.ray([b, c], { color: '#fff', lw: 12, progress: A.p(fon, 0.5) });\nA.rings(b[0], b[1], fon, { count: 2, speed: 200, gap: 0.3, maxR: 120, lw: 5, color: A.accent });\nconst ps = A.p(sal, 0.7);\nA.ARCOIRIS.forEach((col, i) => A.ray([c, [c[0] - 330 * ps, c[1] + (70 + i * 16) * ps]], { color: col, lw: 9, glow: 10 }));\n// ojo\nconst ex = 110, ey = 1090;\nA.with(() => {\n  ctx.save(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(ex, ey, 80, 46, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();\n  A.circle(ex + 10, ey, 30, { fill: '#2b6cb0' }); A.circle(ex + 10, ey, 14, { fill: '#000' });\n}, { x: ex, y: ey, scale: A.pop(sal + 0.3) });\nA.label('REBOTA', b[0] - 20, b[1] - 120, { scale: A.pop(reb), size: 38 });\nA.label('YA SEPARADA EN COLORES', 600, 1500, { scale: A.pop(sep), size: 42 });\n"
+    },
+    {
+      "narracion": "Cada gota te manda un solo color según su altura: las de arriba, rojo; las de abajo, violeta.",
+      "texto_pantalla": "UNA GOTA, UN COLOR",
+      "busqueda_video": "rain drops falling",
+      "color": "#FF5252",
+      "animacion": "A.bg('#0d2233', '#04080d');\nconst got = A.k('gota', 0.5), alt = A.k('altura', 1.6), arr = A.k('arriba', 2.4), aba = A.k('abajo', A.dur - 0.8);\nconst ex = 160, ey = 1050;\nctx.save(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(ex, ey, 70, 40, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();\nA.circle(ex + 10, ey, 26, { fill: '#2b6cb0' }); A.circle(ex + 10, ey, 12, { fill: '#000' });\nA.ARCOIRIS.forEach((c, i) => {\n  const y = 470 + i * 90, x = 900;\n  A.drop(x, y, 30 * A.pop(got + i * 0.05), { fill: 'rgba(120,200,255,0.25)' });\n  const vis = i === 0 ? A.p(arr, 0.4) : i === 6 ? A.p(aba, 0.4) : A.p(alt + i * 0.12, 0.4);\n  A.ray([[x - 30, y], [ex + 70, ey]], { color: c, lw: 7, glow: 10, progress: vis });\n});\nA.label('ARRIBA: ROJO', 640, 450, { scale: A.pop(arr), size: 36, bg: '#FF3B30', color: '#fff' });\nA.label('ABAJO: VIOLETA', 840, 1100, { scale: A.pop(aba), size: 36, bg: '#AF52DE', color: '#fff' });\nA.text('cada gota = un color', 540, 1450, { size: 46, weight: 700, alpha: A.p(got + 0.4, 0.4) });\n"
+    },
+    {
+      "narracion": "Por eso siempre es un arco de unos cuarenta y dos grados alrededor de la sombra de tu cabeza.",
+      "texto_pantalla": "ÁNGULO DE 42°",
+      "busqueda_video": "double rainbow",
+      "color": "#FFD400",
+      "animacion": "A.bg('#0a2a3a', '#04080d');\nconst arc = A.k('arco', 0.6), cua = A.k('cuarenta', 1.6), som = A.k('sombra', 3), cab = A.k('cabeza', A.dur - 0.6);\nconst hz = 1000, cx = 540, cy = 1060;\nA.rainbow(cx, cy, 460, { width: 26, progress: A.p(arc, 1.2) });\nA.rect(0, hz, A.W, 140, { fill: '#173d2a' });\n// persona a un lado; el arco se centra en la sombra de su cabeza\nA.person(900, 1110, { scale: 0.55 });\nconst ps = A.p(som, 0.5);\nctx.save(); ctx.globalAlpha = 0.6 * ps; ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(cx, cy, 34, 16, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();\nA.label('SOMBRA DE TU CABEZA', cx - 120, 1105, { scale: A.pop(cab), size: 32, bg: '#fff' });\n// ángulo de 42°\nconst pa = A.p(cua, 0.6);\nconst eye = [900, 1000];\nA.line([eye, [cx, cy]], { stroke: '#fff', lw: 5, dash: [14, 10], progress: pa });\nconst tgt = [cx + 460 * Math.cos(-2.2), cy + 460 * Math.sin(-2.2)];\nA.line([eye, tgt], { stroke: '#fff', lw: 5, dash: [14, 10], progress: pa });\nA.label('42°', 760, 900, { scale: A.pop(cua + 0.3), size: 54 });\n"
+    },
+    {
+      "narracion": "Y desde un avión puedes verlo completo: un círculo entero.",
+      "texto_pantalla": "¡ES UN CÍRCULO!",
+      "busqueda_video": "airplane above clouds",
+      "color": "#7CFC00",
+      "animacion": "A.bg('#0a2a3a', '#04080d');\nconst avi = A.k('avion', 1), com = A.k('completo', 1.8), cir = A.k('circulo', A.dur - 0.8);\n// nubes abajo\nA.particles(8, 6, (i, r) => A.circle(r() * A.W, 1000 + r() * 120, 80 + r() * 60, { fill: 'rgba(255,255,255,0.12)' }));\n// círculo completo de arcoíris\nA.rainbow(540, 780, 300, { width: 22, from: -Math.PI / 2, to: 1.5 * Math.PI, progress: A.p(com, 1.4) });\n// avión cruzando\nconst ax = -150 + ((t - 0) * 260) % 1400;\nA.with(() => {\n  A.rect(ax - 90, 420, 180, 34, { r: 17, fill: '#fff' });\n  ctx.save(); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(ax - 20, 437); ctx.lineTo(ax - 60, 380); ctx.lineTo(ax + 10, 437); ctx.lineTo(ax - 60, 494); ctx.closePath(); ctx.fill();\n  ctx.beginPath(); ctx.moveTo(ax - 80, 437); ctx.lineTo(ax - 100, 400); ctx.lineTo(ax - 70, 437); ctx.closePath(); ctx.fill(); ctx.restore();\n}, { alpha: A.p(avi - 0.5, 0.3) });\nA.label('¡CÍRCULO COMPLETO!', 540, 1450, { scale: A.pop(cir), size: 50 });\n"
+    },
+    {
+      "narracion": "¿Sabías que cada quien ve su propio arcoíris? Síguenos para más.",
+      "texto_pantalla": "¿LO SABÍAS?",
+      "busqueda_video": "rainbow sky",
+      "color": "#FFD400",
+      "animacion": "A.bg('#1c1806', '#050402');\nconst sab = A.k('sabias', 0.2), sig = A.k('siguenos', 2.4), mas = A.k('mas', A.dur - 0.4);\nA.rainbow(540, 1000, 380, { width: 30, progress: A.p(0, 1.2) });\nA.person(380, 1010, { scale: 0.8 }); A.person(700, 1010, { scale: 0.8, color: '#ffd9a0' });\nA.follow(540, 1425, sig - 0.4, mas - 0.2);\n['¿AURORAS?', '¿RAYOS?', '¿CIELO AZUL?'].forEach((q, i) => {\n  const x = [250, 540, 830][i], y = 1640 + (i % 2) * 70 + Math.sin(t * 3 + i) * 8;\n  A.label(q, x, y, { scale: A.pop(mas + i * 0.15), size: 32, bg: i === 1 ? '#fff' : A.accent });\n});\n"
+    }
+  ],
+  "datos_a_verificar": [
+    "Cada observador ve un arcoíris distinto, formado por gotas diferentes.",
+    "Se ve con el Sol detrás del observador; el arco primario solo aparece sobre el horizonte si el Sol está a menos de unos 42° de altura.",
+    "La luz blanca contiene todos los colores; la refracción depende de la longitud de onda (el violeta se desvía más que el rojo).",
+    "En el arcoíris primario la luz se refracta al entrar, se refleja una vez en el interior de la gota y se refracta al salir.",
+    "El rojo queda arriba (exterior) y el violeta abajo (interior) en el arco primario.",
+    "El arco primario tiene un radio de unos 42° centrado en el punto antisolar (la sombra de tu cabeza).",
+    "Desde un avión o una altura sin horizonte que lo corte, puede verse el círculo completo."
+  ]
+}

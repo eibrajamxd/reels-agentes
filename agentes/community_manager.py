@@ -84,8 +84,8 @@ def _horarios() -> dict[int, list[str]]:
     return HORARIOS_BASE
 
 
-def huecos_libres(n: int = 10, desde: datetime | None = None) -> list[datetime]:
-    """Próximos horarios disponibles respetando el máximo de publicaciones por día."""
+def dias_libres(n_dias: int, desde: datetime | None = None) -> list[list[datetime]]:
+    """Próximos `n_dias` días con espacio para publicar; cada uno con sus horarios candidatos."""
     ahora = desde or datetime.now(TZ)
     ocupados: dict[str, int] = {}
     for item in leer_cola():
@@ -93,23 +93,89 @@ def huecos_libres(n: int = 10, desde: datetime | None = None) -> list[datetime]:
             dia = item["publicar_en"][:10]
             ocupados[dia] = ocupados.get(dia, 0) + 1
     res = []
-    for delta in range(0, 30):
+    for delta in range(0, 60):
         dia = (ahora + timedelta(days=delta)).date()
         if ocupados.get(dia.isoformat(), 0) >= PUBLICACIONES_MAX_POR_DIA:
             continue
+        horas = []
         for hora in _horarios().get(dia.weekday(), []):
             hh, mm = map(int, hora.split(":"))
             dt = datetime(dia.year, dia.month, dia.day, hh, mm, tzinfo=TZ)
             if dt > ahora + timedelta(minutes=30):
-                res.append(dt)
-        if len(res) >= n:
+                horas.append(dt)
+        if horas:
+            res.append(horas)
+        if len(res) >= n_dias:
             break
-    return res[:n]
+    return res
 
 
-def preparar_publicacion(guion: dict, video: str) -> dict:
-    """El CM escribe el copy, elige horario y mete el Reel en la cola."""
-    huecos = huecos_libres()
+def huecos_libres(n: int = 10, desde: datetime | None = None) -> list[datetime]:
+    """Próximos horarios disponibles respetando el máximo de publicaciones por día."""
+    return [h for dia in dias_libres(n, desde) for h in dia][:n]
+
+
+SCHEMA_SEMANA = {
+    "type": "object",
+    "properties": {
+        "dias": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "tema": {"type": "string"},
+                    "indice_horario": {"type": "integer"},
+                    "motivo": {"type": "string"},
+                },
+                "required": ["tema", "indice_horario", "motivo"],
+                "additionalProperties": False,
+            },
+        },
+        "estrategia": {"type": "string"},
+    },
+    "required": ["dias", "estrategia"],
+    "additionalProperties": False,
+}
+
+
+def planificar_semana(temas_fijos: list[str], total: int) -> dict:
+    """El CM arma el calendario: respeta el orden de los temas fijos, propone los que faltan
+    y elige la mejor hora de cada día. Guarda el plan en data/plan_semana.json."""
+    dias = dias_libres(total)
+    if not dias:
+        raise RuntimeError("No hay días libres en el calendario.")
+    total = len(dias)
+    opciones = "\n".join(
+        f"Día {i + 1} ({DIAS[d[0].weekday()]} {d[0]:%d/%m}): "
+        + ", ".join(f"{j}={h:%H:%M}" for j, h in enumerate(d))
+        for i, d in enumerate(dias))
+    from .config import DIR_GUIONES
+    hechos = [json.loads(p.read_text("utf-8")).get("tema", p.stem) for p in DIR_GUIONES.glob("*.json")]
+    metricas = METRICAS.read_text("utf-8")[:6000] if METRICAS.exists() else "Aún no hay datos (cuenta nueva)."
+    prompt = (
+        f"Planifica {total} Reels, uno por día, en este orden de días:\n{opciones}\n\n"
+        f"Los primeros {len(temas_fijos)} días ya tienen tema fijo, en este orden exacto: "
+        f"{json.dumps(temas_fijos, ensure_ascii=False)}. Cópialos tal cual en `tema`.\n"
+        f"Propón tú los temas de los días restantes (estilo 'cómo funciona...'), que hagan serie con los "
+        f"anteriores y alternen categorías. Evita estos temas ya hechos: {json.dumps(hechos, ensure_ascii=False)}\n"
+        f"Para cada día elige `indice_horario` (el número antes del '=') con la mejor hora.\n"
+        f"Métricas: {metricas}\nDevuelve exactamente {total} días en orden."
+    )
+    r = pedir_json(SYSTEM, prompt, SCHEMA_SEMANA, effort="medium")
+    plan = []
+    for i, d in enumerate(dias):
+        item = r["dias"][i] if i < len(r["dias"]) else {"tema": "", "indice_horario": 0, "motivo": ""}
+        tema = temas_fijos[i] if i < len(temas_fijos) else item["tema"]
+        idx = min(max(item["indice_horario"], 0), len(d) - 1)
+        plan.append({"dia": i + 1, "tema": tema, "publicar_en": d[idx].isoformat(), "motivo": item["motivo"]})
+    resultado = {"estrategia": r["estrategia"], "plan": plan}
+    (DIR_DATA / "plan_semana.json").write_text(json.dumps(resultado, ensure_ascii=False, indent=2), "utf-8")
+    return resultado
+
+
+def preparar_publicacion(guion: dict, video: str, horario: datetime | None = None) -> dict:
+    """El CM escribe el copy, elige horario (o usa el ya planificado) y mete el Reel en la cola."""
+    huecos = [horario] if horario else huecos_libres()
     opciones = "\n".join(f"{i}: {DIAS[h.weekday()]} {h:%Y-%m-%d %H:%M}" for i, h in enumerate(huecos))
     metricas = METRICAS.read_text("utf-8")[:6000] if METRICAS.exists() else "Aún no hay datos (cuenta nueva)."
     recientes = [f"{c['publicar_en'][:10]} - {c['tema']}" for c in leer_cola()[-6:]]

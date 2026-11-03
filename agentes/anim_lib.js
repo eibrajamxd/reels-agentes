@@ -119,6 +119,66 @@
       },
       // Partículas deterministas: fn(i, rnd) se llama para cada una.
       particles(n, seed, fn) { const r = A.rand(seed); for (let i = 0; i < n; i++) fn(i, r); },
+      // ---------- Piezas listas para usar ----------
+      ARCOIRIS: ['#FF3B30', '#FF9500', '#FFD60A', '#34C759', '#0A84FF', '#5E5CE6', '#AF52DE'],
+      // Persona simple (palitos). (x,y) = pies. o: {scale, color, lw}
+      person(x, y, o = {}) {
+        const s = o.scale === undefined ? 1 : o.scale, c = o.color || '#fff', lw = (o.lw || 14) * s;
+        if (s <= 0) return;
+        A.circle(x, y - 200 * s, 34 * s, { fill: c });
+        A.line([[x, y - 160 * s], [x, y - 75 * s]], { stroke: c, lw });
+        A.line([[x, y - 75 * s], [x - 30 * s, y]], { stroke: c, lw });
+        A.line([[x, y - 75 * s], [x + 30 * s, y]], { stroke: c, lw });
+        A.line([[x, y - 135 * s], [x - 45 * s, y - 90 * s]], { stroke: c, lw });
+        A.line([[x, y - 135 * s], [x + 45 * s, y - 90 * s]], { stroke: c, lw });
+      },
+      // Foco. (x,y) = centro del vidrio. o: {scale, on (0..1 brillo)}
+      bulb(x, y, o = {}) {
+        const s = o.scale === undefined ? 1 : o.scale, on = clamp(o.on || 0);
+        if (on > 0) { const g = ctx.createRadialGradient(x, y, 10, x, y, 260 * s); g.addColorStop(0, `rgba(255,220,90,${0.75 * on})`); g.addColorStop(1, 'rgba(255,220,90,0)'); ctx.fillStyle = g; ctx.fillRect(x - 280 * s, y - 280 * s, 560 * s, 560 * s); }
+        A.circle(x, y, 95 * s, { fill: on > 0 ? `rgb(${255},${Math.round(lerp(90, 235, on))},${Math.round(lerp(60, 140, on))})` : '#3a3f4b', stroke: '#fff', lw: 6 * s, glow: 60 * on, glowColor: '#ffd85a' });
+        A.rect(x - 45 * s, y + 85 * s, 90 * s, 70 * s, { r: 10 * s, fill: '#9aa3b2' });
+        for (let i = 0; i < 3; i++) A.line([[x - 45 * s, y + 100 * s + i * 20 * s], [x + 45 * s, y + 100 * s + i * 20 * s]], { stroke: '#6b7280', lw: 5 * s });
+        A.line([[x - 30 * s, y + 80 * s], [x - 20 * s, y], [x - 7 * s, y + 25 * s], [x + 7 * s, y - 5 * s], [x + 20 * s, y + 25 * s], [x + 30 * s, y + 80 * s]], { stroke: on > 0.1 ? '#fff6c8' : '#777', lw: 5 * s });
+      },
+      // Arcoíris (arco de colores). progress 0..1 lo dibuja de izquierda a derecha.
+      rainbow(cx, cy, r, o = {}) {
+        const w = o.width || 22, p = o.progress === undefined ? 1 : clamp(o.progress), a0 = o.from === undefined ? Math.PI : o.from, a1 = o.to === undefined ? 2 * Math.PI : o.to;
+        if (p <= 0) return; ctx.save(); ctx.globalAlpha *= o.alpha === undefined ? 1 : clamp(o.alpha); ctx.lineCap = 'butt';
+        A.ARCOIRIS.forEach((c, i) => { ctx.strokeStyle = c; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx, cy, r - i * w, a0, a0 + (a1 - a0) * p); ctx.stroke(); });
+        ctx.restore();
+      },
+      // Gota de agua. (x,y) = centro de la parte redonda.
+      drop(x, y, r, o = {}) {
+        ctx.save(); A._style(o); ctx.beginPath(); ctx.moveTo(x, y - r * 1.9);
+        ctx.bezierCurveTo(x + r * 0.35, y - r * 1.2, x + r, y - r * 0.55, x + r, y);
+        ctx.arc(x, y, r, 0, Math.PI); ctx.bezierCurveTo(x - r, y - r * 0.55, x - r * 0.35, y - r * 1.2, x, y - r * 1.9);
+        ctx.fillStyle = o.fill || 'rgba(120,200,255,0.35)'; ctx.fill(); ctx.strokeStyle = o.stroke || '#bfe6ff'; ctx.lineWidth = o.lw || 4; ctx.stroke(); ctx.restore();
+      },
+      sun(x, y, r, o = {}) {
+        for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6 + t * 0.4; A.line([[x + Math.cos(a) * r * 1.25, y + Math.sin(a) * r * 1.25], [x + Math.cos(a) * r * 1.6, y + Math.sin(a) * r * 1.6]], { stroke: '#FFD60A', lw: r * 0.12, alpha: o.alpha }); }
+        A.circle(x, y, r, { fill: '#FFD60A', glow: 60, alpha: o.alpha });
+      },
+      // Hormiga vista de lado. (x,y) = centro del cuerpo.
+      ant(x, y, s = 1, c = '#e8e8e8') {
+        const pata = Math.sin(t * 18) * 8 * s;
+        [[-34, 0, 16], [0, -4, 13], [34, -8, 18]].forEach(([dx, dy, r]) => A.circle(x + dx * s, y + dy * s, r * s, { fill: c }));
+        for (let i = -1; i <= 1; i++) { A.line([[x + i * 14 * s, y], [x + i * 22 * s + (i % 2 ? pata : -pata), y + 30 * s]], { stroke: c, lw: 4 * s }); }
+        A.line([[x + 44 * s, y - 20 * s], [x + 62 * s, y - 42 * s]], { stroke: c, lw: 3 * s });
+      },
+      // Rayo de luz con flecha; color y grosor opcionales.
+      ray(pts, o = {}) { A.line(pts, { stroke: o.color || '#fff', lw: o.lw || 8, glow: o.glow === undefined ? 20 : o.glow, progress: o.progress, alpha: o.alpha }); },
+      // Botón "Seguir" que se presiona en el instante `tap` (para cierres con llamado a seguir).
+      follow(x, y, start, tap) {
+        const pressed = t > tap, s = A.pop(start) * (pressed && t < tap + 0.25 ? 0.94 : 1);
+        A.with(() => {
+          A.rect(x - 250, y - 65, 500, 130, { r: 65, fill: pressed ? '#333' : '#0095f6', glow: pressed ? 0 : 40, glowColor: '#0095f6' });
+          A.text(pressed ? 'Siguiendo ✓' : 'Seguir', x, y + 2, { size: 60 });
+        }, { x, y, scale: s });
+        const p = A.p(start + 0.3, Math.max(tap - start - 0.3, 0.2), 'inOutCubic');
+        A.circle(lerp(x + 280, x + 60, p), lerp(y + 190, y + 25, p), 38, { fill: 'rgba(255,255,255,0.9)', alpha: A.p(start + 0.2, 0.3) * (1 - A.p(tap + 0.5, 0.4)) });
+        if (pressed) A.rings(x, y, tap, { count: 2, speed: 500, gap: 0.2, maxR: 320, lw: 6, color: '#0095f6' });
+      },
       // Destello blanco breve (corte de impacto) en start.
       flash(start, len = 0.25, alpha = 0.8) {
         if (t < start || t > start + len) return; ctx.save(); ctx.globalAlpha = alpha * (1 - (t - start) / len);

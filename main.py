@@ -5,6 +5,7 @@ Uso rápido:
   python main.py crear --guion guiones/como-funcionan-los-temblores-y-terremotos.json
   python main.py voces             # escuchar todas las voces antes de elegir
   python main.py elegir-voz es-MX-JorgeNeural
+  python main.py semana guiones/a.json "tema 2" "tema 3" --total 5   # el CM planifica y produce la semana
   python main.py ideas 10          # el guionista propone temas
   python main.py auto 3            # produce y programa los 3 siguientes temas de ideas.json
   python main.py cola              # ver calendario
@@ -18,13 +19,47 @@ import json
 import sys
 import time
 from datetime import datetime
+from pathlib import Path
 
 from agentes import community_manager as cm
 from agentes import guionista, narrador, productor
 
 
+def buscar_guion(tema_o_ruta: str) -> str | None:
+    """Acepta la ruta de un guion o un tema; si ya existe un guion de ese tema, lo reutiliza."""
+    if tema_o_ruta.endswith(".json") and Path(tema_o_ruta).exists():
+        return tema_o_ruta
+    clave = guionista.slug(tema_o_ruta)
+    for ruta in sorted(Path("guiones").glob("*.json")):
+        tema = json.loads(ruta.read_text("utf-8")).get("tema", "")
+        if clave in (ruta.stem, guionista.slug(tema)):
+            return str(ruta)
+    return None
+
+
+def semana(temas: list[str], total: int, solo_plan: bool):
+    fijos = []
+    for t in temas:
+        ruta = buscar_guion(t)
+        fijos.append(json.loads(Path(ruta).read_text("utf-8"))["tema"] if ruta else t)
+    print("📅 Community Manager planificando la semana...")
+    plan = cm.planificar_semana(fijos, total)
+    print(f"\nEstrategia: {plan['estrategia']}\n")
+    for d in plan["plan"]:
+        dt = datetime.fromisoformat(d["publicar_en"])
+        print(f"  Día {d['dia']}  {cm.DIAS[dt.weekday()]:<9} {dt:%d/%m %H:%M}  {d['tema']}")
+        print(f"         {d['motivo']}")
+    print("\n(Plan guardado en data/plan_semana.json)")
+    if solo_plan:
+        return
+    for d in plan["plan"]:
+        print(f"\n==================== Día {d['dia']}: {d['tema']} ====================")
+        ruta = buscar_guion(d["tema"])
+        crear(d["tema"], ruta, False, False, horario=datetime.fromisoformat(d["publicar_en"]))
+
+
 def crear(tema: str | None, guion_path: str | None, sin_voz: bool, sin_publicar: bool,
-          sin_animacion: bool = False):
+          sin_animacion: bool = False, horario: datetime | None = None):
     if guion_path:
         guion = json.loads(open(guion_path, encoding="utf-8").read())
         print(f"📄 Usando guion existente: {guion['titulo']}")
@@ -40,7 +75,7 @@ def crear(tema: str | None, guion_path: str | None, sin_voz: bool, sin_publicar:
     if sin_publicar:
         return
     print("\n📣 Community Manager preparando la publicación...")
-    item = cm.preparar_publicacion(guion, video)
+    item = cm.preparar_publicacion(guion, video, horario)
     _mostrar(item)
 
 
@@ -65,6 +100,10 @@ def main():
     vo = sub.add_parser("voces"); vo.add_argument("--frase", default=narrador.FRASE_MUESTRA)
     vo.add_argument("--solo-espanol", action="store_true")
     ev = sub.add_parser("elegir-voz"); ev.add_argument("nombre")
+    se = sub.add_parser("semana", help="el CM planifica la semana y produce cada Reel")
+    se.add_argument("temas", nargs="*", help="temas fijos en orden (texto o ruta de guion)")
+    se.add_argument("--total", type=int, default=5, help="días a planificar")
+    se.add_argument("--solo-plan", action="store_true", help="solo mostrar el calendario")
     i = sub.add_parser("ideas"); i.add_argument("n", type=int, nargs="?", default=10)
     a = sub.add_parser("auto"); a.add_argument("n", type=int, nargs="?", default=1)
     sub.add_parser("cola")
@@ -86,6 +125,8 @@ def main():
     elif args.cmd == "elegir-voz":
         narrador.elegir_voz(args.nombre)
         print(f"✅ Voz del canal: {args.nombre} (guardada en .env)")
+    elif args.cmd == "semana":
+        semana(args.temas, args.total, args.solo_plan)
     elif args.cmd == "ideas":
         for k, idea in enumerate(guionista.proponer_ideas(args.n), 1):
             print(f"{k:>2}. {idea['tema']}\n    Gancho: {idea['gancho']}")

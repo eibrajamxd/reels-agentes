@@ -92,6 +92,11 @@ python main.py crear --guion guiones/como-funcionan-los-temblores-y-terremotos.j
 # Cualquier tema nuevo: el guionista escribe, el productor graba, el CM programa
 python main.py crear "cómo funciona un microondas"
 
+# Plan de la semana: el Community Manager respeta el orden de tus temas, propone los que faltan,
+# elige la mejor hora de cada día, produce cada Reel y lo deja en la cola para tu aprobación
+python main.py semana "cómo funciona la electricidad" "cómo se forma un arcoíris" --total 5
+python main.py semana ... --solo-plan   # solo ver el calendario, sin producir
+
 python main.py ideas 15      # banco de temas con su gancho
 python main.py auto 5        # produce y programa los 5 siguientes temas
 python main.py cola          # calendario de publicaciones

@@ -43,6 +43,9 @@ API disponible (objeto A):
 - A.text(str,x,y,{size,color,weight,align,alpha,stroke,strokeWidth})   A.label(str,x,y,{size,bg,color,scale,alpha})
 - A.rings(x,y,inicio,{count,speed,gap,maxR,color,lw,alpha})  ondas expansivas
 - A.particles(n, semilla, (i, rnd) => {...})   A.flash(inicio, dur, alpha)  destello de impacto
+- Piezas listas: A.person(x,yPies,{scale,color}), A.bulb(x,y,{scale,on:0..1}), A.rainbow(cx,cy,r,{width,progress,from,to,alpha}),
+  A.drop(x,y,r,{fill,stroke}), A.sun(x,y,r), A.ant(x,y,escala), A.ray([[x,y],...],{color,lw,progress}),
+  A.follow(x,y,inicio,toque) botón "Seguir" que se presiona, A.ARCOIRIS (7 colores de rojo a violeta)
 - También puedes usar ctx directamente (paths, gradientes, bezier...).
 
 ZONAS DE LA PANTALLA (obligatorio respetarlas):
