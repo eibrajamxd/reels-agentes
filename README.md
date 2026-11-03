@@ -1,4 +1,4 @@
-# Fábrica de Reels "Así Funciona": 5 agentes con Claude
+# Fábrica de Reels "¿Cómo Funciona?" (@como_funcionatv): 5 agentes con Claude
 
 Sistema que produce y publica Reels educativos del tipo *"cómo funciona…"* en Instagram.
 

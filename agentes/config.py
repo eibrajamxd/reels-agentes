@@ -23,8 +23,8 @@ IG_USER_ID = os.getenv("IG_USER_ID", "")
 IG_API_BASE = os.getenv("IG_API_BASE", "https://graph.instagram.com").rstrip("/")
 IG_API_VERSION = os.getenv("IG_API_VERSION", "v23.0")
 
-CANAL_NOMBRE = os.getenv("CANAL_NOMBRE", "Así Funciona")
-CANAL_HANDLE = os.getenv("CANAL_HANDLE", "@asifunciona")
+CANAL_NOMBRE = os.getenv("CANAL_NOMBRE", "¿Cómo Funciona?")
+CANAL_HANDLE = os.getenv("CANAL_HANDLE", "@como_funcionatv")
 ZONA_HORARIA = os.getenv("ZONA_HORARIA", "America/Mexico_City")
 VOZ = os.getenv("VOZ", "es-MX-JorgeNeural")  # voz elegida del canal; cámbiala con `voces` + `elegir-voz`
 VELOCIDAD_VOZ = os.getenv("VELOCIDAD_VOZ", "+8%")
