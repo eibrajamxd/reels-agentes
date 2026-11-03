@@ -4,7 +4,7 @@ import re
 import unicodedata
 
 from .claude import pedir_json
-from .config import CANAL_NOMBRE, DIR_DATA, DIR_GUIONES
+from .config import CANAL_NOMBRE, DIR_DATA, DIR_GUIONES, PUBLICO
 
 SYSTEM = f"""Eres el guionista principal de "{CANAL_NOMBRE}", un canal de Instagram Reels en
 español que explica cómo funcionan las cosas (ciencia, tecnología, cuerpo humano, naturaleza,
@@ -14,7 +14,9 @@ completos, guarde y comparta.
 Reglas de retención:
 - La primera escena es el GANCHO: una frase de menos de 12 palabras que genere curiosidad o
   rompa una creencia. Nada de "Hola" ni "En este video". Se entiende sin sonido.
-- Una sola idea por escena, frases cortas, lenguaje de conversación en español neutro.
+- Una sola idea por escena, frases cortas, lenguaje de conversación. El público es de {PUBLICO}:
+  usa ejemplos, cifras y referencias de {PUBLICO} cuando aporten, en un español claro y cercano
+  (sin modismos forzados). Para el tráfico di "tráfico".
 - Abre una pregunta al inicio y respóndela al final (bucle abierto) para que vean hasta el final.
 - Usa comparaciones cotidianas ("se mueve lo que crecen tus uñas").
 - Total de narración: 100 a 140 palabras, entre 6 y 9 escenas.

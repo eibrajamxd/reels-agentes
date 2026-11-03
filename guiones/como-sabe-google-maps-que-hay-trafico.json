@@ -1,10 +1,10 @@
 {
-  "tema": "Cómo sabe Google Maps que hay taco",
-  "titulo": "¿Cómo sabe Google Maps que hay taco?",
+  "tema": "Cómo sabe Google Maps que hay tráfico",
+  "titulo": "¿Cómo sabe Google Maps que hay tráfico?",
   "escenas": [
     {
-      "narracion": "En 2020, un artista creó un taco falso en Google Maps… caminando con un carrito lleno de 99 celulares.",
-      "texto_pantalla": "UN TACO FALSO",
+      "narracion": "En 2020, un artista creó tráfico falso en Google Maps… caminando con un carrito lleno de 99 celulares.",
+      "texto_pantalla": "TRÁFICO FALSO",
       "busqueda_video": "traffic jam city",
       "color": "#FF3D3D"
     },
@@ -33,7 +33,7 @@
       "color": "#FF6B35"
     },
     {
-      "narracion": "Además lo compara con el historial: cómo suele estar esa calle, por ejemplo, un lunes a las seis de la tarde.",
+      "narracion": "Además lo compara con el historial: cómo suele estar esa calle, por ejemplo, un lunes a las seis de la tarde en Santiago.",
       "texto_pantalla": "EL HISTORIAL",
       "busqueda_video": "rush hour highway",
       "color": "#4DD0E1"
@@ -45,8 +45,8 @@
       "color": "#FFD400"
     },
     {
-      "narracion": "Por eso, cuando 99 celulares avanzaban a paso de peatón por una calle vacía, Maps creyó que había un taco.",
-      "texto_pantalla": "99 CELULARES = TACO",
+      "narracion": "Por eso, cuando 99 celulares avanzaban a paso de peatón por una calle vacía, Maps creyó que había tráfico.",
+      "texto_pantalla": "99 CELULARES = TRÁFICO",
       "busqueda_video": "empty street",
       "color": "#FF3D3D"
     },

@@ -10,7 +10,7 @@ import requests
 
 from .claude import pedir_json
 from .config import (CANAL_HANDLE, CANAL_NOMBRE, DIR_DATA, HORARIOS_BASE, IG_ACCESS_TOKEN,
-                     IG_API_BASE, IG_API_VERSION, IG_USER_ID, PUBLICACIONES_MAX_POR_DIA,
+                     IG_API_BASE, IG_API_VERSION, IG_USER_ID, PUBLICACIONES_MAX_POR_DIA, PUBLICO,
                      REVISION_MANUAL, ZONA_HORARIA)
 
 TZ = ZoneInfo(ZONA_HORARIA)
@@ -27,7 +27,8 @@ Al escribir el copy:
 - Primera línea = gancho que complementa (no repite) el texto del video; se lee antes del "más".
 - 2 a 4 líneas cortas que aporten un dato extra, sin spoilear todo.
 - Llamado a guardar/compartir + una pregunta concreta que invite a comentar.
-- Español neutro, máximo 2 emojis, nada de clickbait falso.
+- El público es de {PUBLICO}: español claro y cercano para {PUBLICO}, máximo 2 emojis, nada de clickbait falso.
+- Incluye 1 o 2 hashtags locales de {PUBLICO} cuando el tema lo permita.
 - 3 a 6 hashtags relevantes (mezcla nicho y medianos), nunca hashtags prohibidos o de spam.
 
 Al elegir horario usa los datos de rendimiento si existen; si no, los horarios base. Evita

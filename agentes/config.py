@@ -25,7 +25,8 @@ IG_API_VERSION = os.getenv("IG_API_VERSION", "v23.0")
 
 CANAL_NOMBRE = os.getenv("CANAL_NOMBRE", "¿Cómo Funciona?")
 CANAL_HANDLE = os.getenv("CANAL_HANDLE", "@como_funcionatv")
-ZONA_HORARIA = os.getenv("ZONA_HORARIA", "America/Mexico_City")
+PUBLICO = os.getenv("PUBLICO", "Chile")
+ZONA_HORARIA = os.getenv("ZONA_HORARIA", "America/Santiago")
 VOZ = os.getenv("VOZ", "es-MX-JorgeNeural")  # voz elegida del canal; cámbiala con `voces` + `elegir-voz`
 VELOCIDAD_VOZ = os.getenv("VELOCIDAD_VOZ", "+8%")
 PUBLICACIONES_MAX_POR_DIA = int(os.getenv("PUBLICACIONES_MAX_POR_DIA", "1"))
@@ -36,14 +37,14 @@ ESTILO_ANIMACION = os.getenv("ESTILO_ANIMACION", "pelicula")
 CHROMIUM_PATH = os.getenv("CHROMIUM_PATH", "")  # solo si Playwright no encuentra su navegador
 REVISION_MANUAL = os.getenv("REVISION_MANUAL", "true").lower() == "true"
 
-# Horarios iniciales (hora local) para Reels con audiencia hispana.
-# Son un punto de partida: el comando `analizar` los reemplaza con datos reales.
+# Horarios iniciales (hora de Chile) para Reels: colación (13:00–14:30) y noche (20:30–22:00),
+# que es cuando más se usa Instagram en Chile. Son un punto de partida: `analizar` los reemplaza con datos reales.
 HORARIOS_BASE = {
-    0: ["13:00", "19:30"],  # lunes
-    1: ["13:00", "19:30"],
-    2: ["13:00", "20:00"],
-    3: ["13:00", "19:30"],
-    4: ["12:30", "18:00"],
-    5: ["10:30", "18:30"],  # sábado
-    6: ["11:00", "19:00"],  # domingo
+    0: ["13:30", "21:00"],  # lunes
+    1: ["13:30", "21:00"],
+    2: ["13:30", "21:00"],
+    3: ["13:30", "21:00"],
+    4: ["13:30", "20:30"],
+    5: ["11:30", "20:30"],  # sábado
+    6: ["12:00", "21:00"],  # domingo
 }
