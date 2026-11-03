@@ -281,7 +281,9 @@ def publicar_reel(video: str, caption: str, primer_comentario: str = "") -> str:
     # Instagram devuelve la URL de subida en "uri"; se usa tal cual (si falta, se arma con la versión configurada).
     up = requests.post(
         cont.get("uri") or f"https://rupload.facebook.com/ig-api-upload/{IG_API_VERSION}/{cid}",
-        headers={"Authorization": f"OAuth {IG_ACCESS_TOKEN}", "offset": "0", "file_size": str(len(datos))},
+        headers={"Authorization": f"OAuth {IG_ACCESS_TOKEN}", "offset": "0", "file_size": str(len(datos)),
+                 # Sin este header rupload a veces rechaza el archivo con 400 ProcessingFailedError
+                 "Content-Type": "application/octet-stream"},
         data=datos, timeout=600,
     )
     if not up.ok:
