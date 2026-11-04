@@ -296,7 +296,10 @@ def publicar_reel(video: str, caption: str, primer_comentario: str = "") -> str:
         data=datos, timeout=600,
     )
     if not up.ok:
-        raise RuntimeError(f"Subida falló {up.status_code}: {up.text}")
+        # rupload a veces responde 400 ProcessingFailedError aunque el video sí llegó y Instagram lo
+        # procesa (comprobado: el contenedor pasa a FINISHED). Por eso no se aborta aquí: manda el
+        # estado del contenedor. Si la subida falló de verdad, nunca llega a FINISHED y se agota el tiempo.
+        print(f"   ⚠️  rupload respondió {up.status_code}: {up.text[:200]} — sigo revisando el contenedor")
     for _ in range(60):  # hasta ~10 min de procesamiento
         info = _ig("GET", cid, fields="status_code,status")
         estado = info.get("status_code")
@@ -306,7 +309,8 @@ def publicar_reel(video: str, caption: str, primer_comentario: str = "") -> str:
             raise RuntimeError(f"Instagram no pudo procesar el video: {estado} — {info.get('status', '')}")
         time.sleep(10)
     else:
-        raise RuntimeError("Tiempo de espera agotado procesando el video")
+        detalle = f" (rupload había respondido {up.status_code}: {up.text[:200]})" if not up.ok else ""
+        raise RuntimeError(f"Tiempo de espera agotado procesando el video{detalle}")
     media_id = _ig("POST", f"{IG_USER_ID}/media_publish", creation_id=cid)["id"]
     if primer_comentario:
         try:
