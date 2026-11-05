@@ -119,6 +119,12 @@ Sin animaciones (solo stock): `--sin-animacion`.
 - Para rehacer la animación de una escena, borra su campo `"animacion"` en el JSON y vuelve a correr `crear --guion`.
 - El guion de terremotos ya trae sus 9 animaciones hechas: renderizarlo no gasta tokens del animador.
 
+### Publicación manual (modo por defecto)
+Con `MODO_PUBLICACION=manual` (en `.env`), `crear` y `semana` no suben nada a Instagram: dejan cada Reel en
+`~/Desktop/Reels listos/<fecha_hora>_<tema>/` con `reel.mp4` y `publicacion.txt` (caption, primer comentario,
+horario sugerido y datos a verificar). Lo subes desde la app y luego lo marcas con `python main.py publicado <id>`,
+para que el Community Manager sepa qué ya salió. Para volver a la publicación automática: `MODO_PUBLICACION=automatica`.
+
 ### Revisión humana (recomendado)
 Con `REVISION_MANUAL=true` cada Reel queda en `pendiente_revision`: mira el MP4, revisa la lista
 de **datos a verificar** que imprime el guionista y apruébalo. Un dato falso en una cuenta de

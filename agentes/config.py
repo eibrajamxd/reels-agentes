@@ -36,6 +36,10 @@ MODO_VISUAL = os.getenv("MODO_VISUAL", "animacion")
 ESTILO_ANIMACION = os.getenv("ESTILO_ANIMACION", "pelicula")
 CHROMIUM_PATH = os.getenv("CHROMIUM_PATH", "")  # solo si Playwright no encuentra su navegador
 REVISION_MANUAL = os.getenv("REVISION_MANUAL", "true").lower() == "true"
+# manual = el sistema deja el video y el texto listos en tu computador y tú lo subes desde la app
+# automatica = el vigilante lo publica solo en Instagram a la hora elegida
+MODO_PUBLICACION = os.getenv("MODO_PUBLICACION", "manual").lower()
+CARPETA_LISTOS = Path(os.path.expanduser(os.getenv("CARPETA_LISTOS", "~/Desktop/Reels listos")))
 
 # Horarios iniciales (hora de Chile) para Reels: colación (13:00–14:30) y noche (20:30–22:00),
 # que es cuando más se usa Instagram en Chile. Son un punto de partida: `analizar` los reemplaza con datos reales.

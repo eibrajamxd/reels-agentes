@@ -11,7 +11,8 @@ Uso rápido:
   python main.py auto 3            # produce y programa los 3 siguientes temas de ideas.json
   python main.py cola              # ver calendario
   python main.py aprobar <id>      # aprobar un Reel en revisión
-  python main.py publicar          # publica lo que ya toca (pon esto en cron)
+  python main.py publicado <id>    # marcar como publicado un Reel que subiste a mano
+  python main.py publicar          # publica lo que ya toca (solo con MODO_PUBLICACION=automatica)
   python main.py vigilar           # bucle: publica a su hora, sin cron
   python main.py analizar          # métricas -> diagnóstico -> nuevos horarios
 """
@@ -24,6 +25,7 @@ from pathlib import Path
 
 from agentes import community_manager as cm
 from agentes import guionista, narrador, productor
+from agentes.config import MODO_PUBLICACION
 
 
 def buscar_guion(tema_o_ruta: str) -> str | None:
@@ -76,8 +78,19 @@ def crear(tema: str | None, guion_path: str | None, sin_voz: bool, sin_publicar:
     if sin_publicar:
         return
     print("\n📣 Community Manager preparando la publicación...")
-    item = cm.preparar_publicacion(guion, video, horario)
-    _mostrar(item)
+    try:
+        item = cm.preparar_publicacion(guion, video, horario)
+    except Exception as err:  # sin clave de Claude o sin conexión: igual se entrega el video
+        if MODO_PUBLICACION != "manual":
+            raise
+        print(f"   ! No se pudo generar el texto ({type(err).__name__}); dejo solo el video.")
+        item = None
+    if item:
+        _mostrar(item)
+    if MODO_PUBLICACION == "manual":
+        destino = cm.exportar_listo(guion, video, item)
+        print(f"\n📂 Listo para subir a mano: {destino}")
+        print("   Contiene reel.mp4 y publicacion.txt (caption, primer comentario y horario).")
 
 
 def _mostrar(item):
@@ -85,6 +98,8 @@ def _mostrar(item):
     print(f"\n[{item['id']}] {item['estado'].upper()} — {cm.DIAS[dt.weekday()]} {dt:%d/%m %H:%M}  ·  {item['tema']}")
     print(f"   Por qué: {item.get('razon_horario', '')}")
     print("   Caption:\n      " + item["caption"].replace("\n", "\n      "))
+    if item["estado"] == "manual":
+        print("   👉 Súbelo tú desde la app a esa hora (el sistema no lo publicará solo).")
     if item["estado"] == "pendiente_revision":
         print(f"   👉 Revisa el video ({item['video']}) y aprueba con: python main.py aprobar {item['id']}")
 
@@ -112,6 +127,8 @@ def main():
     a = sub.add_parser("auto"); a.add_argument("n", type=int, nargs="?", default=1)
     sub.add_parser("cola")
     ap = sub.add_parser("aprobar"); ap.add_argument("id")
+    pu = sub.add_parser("publicado", help="marcar como publicado un Reel que subiste a mano")
+    pu.add_argument("id")
     sub.add_parser("publicar")
     v = sub.add_parser("vigilar"); v.add_argument("--cada", type=int, default=300, help="segundos")
     sub.add_parser("analizar")
@@ -136,7 +153,7 @@ def main():
         if not rutas:
             # fuera del ranking: lo ya publicado (por el sistema o a mano) y lo que ya está en la cola
             publicados = {guionista.slug(c["tema"]) for c in cm.leer_cola()
-                          if c["estado"] in ("publicado", "programado", "pendiente_revision")}
+                          if c["estado"] in ("publicado", "programado", "pendiente_revision", "manual")}
             hoy = datetime.now(cm.TZ).date().isoformat()
             rutas, reservados = [], []
             for r in sorted(Path("guiones").glob("*.json")):
@@ -179,6 +196,16 @@ def main():
                 item["estado"] = "programado"
                 cm.guardar_cola(cola)
                 print(f"✅ Aprobado. Se publicará el {item['publicar_en'][:16].replace('T', ' ')}")
+                break
+        else:
+            sys.exit("No encontré ese id")
+    elif args.cmd == "publicado":
+        cola = cm.leer_cola()
+        for item in cola:
+            if item["id"] == args.id:
+                item["estado"], item["publicado_en"] = "publicado", datetime.now(cm.TZ).isoformat()
+                cm.guardar_cola(cola)
+                print(f"✅ Marcado como publicado: {item['tema']}")
                 break
         else:
             sys.exit("No encontré ese id")

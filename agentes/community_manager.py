@@ -11,7 +11,7 @@ import requests
 from .claude import pedir_json
 from .config import (CANAL_HANDLE, CANAL_NOMBRE, DIR_DATA, HORARIOS_BASE, IG_ACCESS_TOKEN,
                      IG_API_BASE, IG_API_VERSION, IG_USER_ID, PUBLICACIONES_MAX_POR_DIA, PUBLICO,
-                     REVISION_MANUAL, ZONA_HORARIA)
+                     MODO_PUBLICACION, REVISION_MANUAL, ZONA_HORARIA)
 
 TZ = ZoneInfo(ZONA_HORARIA)
 COLA = DIR_DATA / "cola.json"
@@ -90,7 +90,7 @@ def dias_libres(n_dias: int, desde: datetime | None = None) -> list[list[datetim
     ahora = desde or datetime.now(TZ)
     ocupados: dict[str, int] = {}
     for item in leer_cola():
-        if item["estado"] in ("programado", "pendiente_revision"):
+        if item["estado"] in ("programado", "pendiente_revision", "manual"):
             dia = item["publicar_en"][:10]
             ocupados[dia] = ocupados.get(dia, 0) + 1
     res = []
@@ -210,7 +210,7 @@ def priorizar(rutas: list[str]) -> dict:
                         "titulares": [e["texto_pantalla"] for e in g["escenas"]]})
     from .config import DIR_GUIONES
     publicados = [f"{c['publicar_en'][:16]} ({c['estado']}) {c['tema']}" for c in leer_cola()
-                  if c["estado"] in ("publicado", "programado", "pendiente_revision")]
+                  if c["estado"] in ("publicado", "programado", "pendiente_revision", "manual")]
     for p in DIR_GUIONES.glob("*.json"):  # publicados a mano desde la app
         g = json.loads(p.read_text("utf-8"))
         if g.get("publicado_manual"):
@@ -258,12 +258,40 @@ def preparar_publicacion(guion: dict, video: str, horario: datetime | None = Non
         "publicar_en": huecos[idx].isoformat(),
         "razon_horario": r["razon_horario"],
         "datos_a_verificar": guion.get("datos_a_verificar", []),
-        "estado": "pendiente_revision" if REVISION_MANUAL else "programado",
+        "estado": ("manual" if MODO_PUBLICACION == "manual"
+                   else "pendiente_revision" if REVISION_MANUAL else "programado"),
     }
     cola = leer_cola()
     cola.append(item)
     guardar_cola(cola)
     return item
+
+
+def exportar_listo(guion: dict, video: str, item: dict | None) -> Path:
+    """Deja el video y un texto con caption, primer comentario y horario en CARPETA_LISTOS."""
+    import shutil
+    from .config import CARPETA_LISTOS
+    from .guionista import slug
+    tema = guion.get("tema", guion["titulo"])
+    if item:
+        dt = datetime.fromisoformat(item["publicar_en"])
+        cuando = f"{DIAS[dt.weekday()]} {dt:%d/%m/%Y a las %H:%M} (hora de {ZONA_HORARIA})"
+        prefijo = f"{dt:%Y-%m-%d_%H%M}_"
+    else:
+        cuando, prefijo = "a elección (no se generó el texto del Community Manager)", ""
+    destino = CARPETA_LISTOS / f"{prefijo}{slug(tema)}"
+    destino.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(video, destino / "reel.mp4")
+    lineas = [f"REEL: {tema}", "", f"PUBLICAR: {cuando}"]
+    if item:
+        lineas += [f"Por qué ese horario: {item.get('razon_horario', '')}", "",
+                   "=== CAPTION (copiar y pegar) ===", item["caption"], "",
+                   "=== PRIMER COMENTARIO (publícalo tú apenas salga el Reel) ===", item.get("primer_comentario", "")]
+    lineas += ["", "=== DATOS A VERIFICAR ANTES DE PUBLICAR ==="] + [f"- {d}" for d in guion.get("datos_a_verificar", [])]
+    if item:
+        lineas += ["", f"Cuando lo publiques, márcalo con: python main.py publicado {item['id']}"]
+    (destino / "publicacion.txt").write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    return destino
 
 
 # ---------------------------------------------------------------- Instagram Graph API
