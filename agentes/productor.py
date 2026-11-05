@@ -277,6 +277,9 @@ def producir_video(guion: dict, con_voz: bool = True, musica: str | None = None,
                     except Exception as err:
                         print(f"   ! Escena {i + 1}: {err}; uso video de fondo")
                 clips.append(generar_fondo(e, i, d, tmp, usados))
+        animadas = sum(1 for i, e in enumerate(escenas) if i in datos and e.get("animacion"))
+        print(f"   Escenas animadas: {animadas} de {len(escenas)}"
+              + ("" if animadas == len(escenas) else "  ⚠️ las demás usan fondo sin animación"))
     else:
         print("🎞️  Preparando fondos de cada escena...")
         clips = [generar_fondo(e, i, d, tmp, usados) for i, (e, (_, d, _)) in enumerate(zip(escenas, voces))]

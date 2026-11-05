@@ -17,7 +17,9 @@ def cliente() -> anthropic.Anthropic:
 
 def pedir_json(system: str, prompt: str | list, schema: dict, effort: str = "high",
                max_tokens: int = 16000) -> dict:
-    resp = cliente().beta.messages.create(
+    # Siempre en streaming: con max_tokens alto (el Animador pide 24 000) el SDK rechaza las
+    # peticiones sin streaming ("Streaming is required for operations that may take longer than 10 minutes").
+    with cliente().beta.messages.stream(
         model=MODELO,
         max_tokens=max_tokens,
         system=system,
@@ -30,7 +32,8 @@ def pedir_json(system: str, prompt: str | list, schema: dict, effort: str = "hig
         # modelo de respaldo recomendado en vez de devolver el rechazo.
         betas=["server-side-fallback-2026-07-01"],
         fallbacks="default",
-    )
+    ) as stream:
+        resp = stream.get_final_message()
     if resp.stop_reason == "refusal":
         raise RuntimeError(f"Claude rechazó la petición: {resp.stop_details}")
     if resp.stop_reason == "max_tokens":
