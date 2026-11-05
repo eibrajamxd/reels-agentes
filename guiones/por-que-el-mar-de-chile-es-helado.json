@@ -1,0 +1,67 @@
+{
+  "tema": "Por qué el mar de Chile es tan helado",
+  "titulo": "¿Por qué el mar de Chile es tan helado?",
+  "escenas": [
+    {
+      "narracion": "¿Por qué te congelas en la playa en Chile, en pleno enero?",
+      "texto_pantalla": "¡QUÉ FRÍA!",
+      "busqueda_video": "beach chile waves",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Culpa a la corriente de Humboldt: un enorme río de agua fría dentro del océano.",
+      "texto_pantalla": "CORRIENTE DE HUMBOLDT",
+      "busqueda_video": "ocean aerial",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Viene desde el sur, desde aguas cercanas a la Antártica, y sube pegada a la costa de Chile y Perú.",
+      "texto_pantalla": "VIENE DEL SUR",
+      "busqueda_video": "antarctica ice sea",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Pero hay un segundo truco: el viento empuja el agua de la superficie mar adentro, y desde el fondo sube agua todavía más fría. Se llama surgencia.",
+      "texto_pantalla": "SURGENCIA",
+      "busqueda_video": "wind sea surface",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Por eso, en la zona central, el mar suele estar entre catorce y dieciocho grados, mientras que en Brasil, a la misma latitud, pasa los veinticuatro.",
+      "texto_pantalla": "14° vs 24°",
+      "busqueda_video": "thermometer beach",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Esa agua que sube del fondo trae muchos nutrientes, y alimenta uno de los mares con más peces del planeta.",
+      "texto_pantalla": "MAR LLENO DE VIDA",
+      "busqueda_video": "fish school",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Y también enfría el aire de la costa: por eso casi no llueve en el norte, y aparece la camanchaca.",
+      "texto_pantalla": "Y LA CAMANCHACA",
+      "busqueda_video": "coastal fog",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Así que la próxima vez que grites al entrar al agua, acuérdate: gracias a ese frío, comes tan buenos mariscos.",
+      "texto_pantalla": "¡GRACIAS, HUMBOLDT!",
+      "busqueda_video": "seafood market",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Cuál es la playa más helada que conoces?",
+      "texto_pantalla": "¿LA MÁS HELADA?",
+      "busqueda_video": "chile coast sunset",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "La corriente de Humboldt (o del Perú) lleva agua fría de origen subantártico hacia el norte a lo largo de Chile y Perú.",
+    "La surgencia costera, impulsada por vientos del sur, hace aflorar agua profunda fría y rica en nutrientes.",
+    "Temperaturas superficiales típicas de verano en Chile central ~14–18 °C; en la costa de Brasil a latitud similar (~23–33° S) suelen superar 22–25 °C (verificar cifras por zona).",
+    "El ecosistema de la corriente de Humboldt es uno de los más productivos del mundo en pesca.",
+    "El agua fría estabiliza la atmósfera costera, contribuye a la aridez del norte y a la formación de la camanchaca."
+  ]
+}

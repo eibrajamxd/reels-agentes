@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo funciona la alerta SAE en el celular",
+  "titulo": "¿Por qué todos los celulares suenan al mismo tiempo?",
+  "escenas": [
+    {
+      "narracion": "¿Por qué, en una emergencia, todos los celulares suenan al mismo tiempo… aunque no tengas saldo?",
+      "texto_pantalla": "¡SUENAN TODOS!",
+      "busqueda_video": "phones alert crowd",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Es el SAE, el Sistema de Alerta de Emergencia. Y no funciona con mensajes de texto.",
+      "texto_pantalla": "NO ES UN SMS",
+      "busqueda_video": "smartphone notification",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Un SMS se envía uno por uno, a cada número. Con millones de personas a la vez, la red se saturaría.",
+      "texto_pantalla": "UNO POR UNO = COLAPSO",
+      "busqueda_video": "cell tower",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "El SAE usa difusión celular: la antena no le escribe a cada teléfono, transmite el mensaje a todos los de su zona, como una radio.",
+      "texto_pantalla": "COMO UNA RADIO",
+      "busqueda_video": "radio antenna",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Por eso llega a miles de celulares en segundos, sin saldo, sin datos y con cualquier compañía.",
+      "texto_pantalla": "SIN SALDO NI DATOS",
+      "busqueda_video": "city aerial night",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Las autoridades eligen solo las antenas del área en peligro: si la alerta es para tu comuna, no le suena a todo Chile.",
+      "texto_pantalla": "SOLO LA ZONA EN RIESGO",
+      "busqueda_video": "map chile",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Y usa un tono especial, fuerte, que muchos celulares hacen sonar incluso en modo silencio.",
+      "texto_pantalla": "SUENA EN SILENCIO",
+      "busqueda_video": "phone ringing",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Eso sí: tu celular tiene que ser compatible con el SAE. Por eso, en Chile, los equipos se certifican antes de venderse.",
+      "texto_pantalla": "¿EL TUYO ES COMPATIBLE?",
+      "busqueda_video": "phone store",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Dónde te pilló la última alerta?",
+      "texto_pantalla": "¿DÓNDE TE PILLÓ?",
+      "busqueda_video": "santiago skyline",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El SAE (Sistema de Alerta de Emergencia) es operado por SENAPRED (ex ONEMI) en coordinación con Subtel y las compañías móviles.",
+    "Usa tecnología de difusión celular (cell broadcast), no SMS: el mensaje se emite a todos los equipos compatibles conectados a las antenas de una zona.",
+    "No requiere saldo, plan de datos ni una compañía específica.",
+    "La alerta se segmenta geográficamente según las antenas del área afectada.",
+    "Tiene un tono distintivo; en muchos equipos suena aunque esté en silencio (depende del modelo y configuración).",
+    "Subtel exige que los equipos que se comercializan en Chile sean compatibles con el SAE (verificar el alcance exacto de la norma vigente)."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "tema": "Por qué en Chile se cambia la hora",
+  "titulo": "¿Quién decide el cambio de hora?",
+  "escenas": [
+    {
+      "narracion": "Dos veces al año pierdes o ganas una hora de sueño. ¿Quién decide eso, y para qué sirve?",
+      "texto_pantalla": "¿QUIÉN LO DECIDE?",
+      "busqueda_video": "alarm clock",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "La Tierra no cambia: lo que cambia es el reloj que acordamos usar.",
+      "texto_pantalla": "CAMBIA EL RELOJ",
+      "busqueda_video": "earth rotation",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "En invierno, Chile atrasa una hora, para que amanezca más temprano cuando la gente va al trabajo y al colegio.",
+      "texto_pantalla": "INVIERNO: −1 HORA",
+      "busqueda_video": "kids school morning",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "En verano, la adelanta, para que la luz natural dure hasta más tarde.",
+      "texto_pantalla": "VERANO: +1 HORA",
+      "busqueda_video": "sunset city summer",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Lo decide el Gobierno por decreto. Hoy, el horario de invierno va de abril a septiembre.",
+      "texto_pantalla": "POR DECRETO",
+      "busqueda_video": "government building",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Magallanes, en cambio, decidió quedarse todo el año con el horario de verano.",
+      "texto_pantalla": "MAGALLANES NO CAMBIA",
+      "busqueda_video": "punta arenas",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "¿Y cómo sabe tu celular que tiene que cambiar? Consulta una base de datos mundial de husos horarios, que mantienen voluntarios.",
+      "texto_pantalla": "¿Y TU CELULAR?",
+      "busqueda_video": "phone clock",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Por eso, cuando Chile ha cambiado las fechas a última hora, algunos celulares han mostrado la hora equivocada.",
+      "texto_pantalla": "¡HORA EQUIVOCADA!",
+      "busqueda_video": "confused phone",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Prefieres el horario de verano o el de invierno?",
+      "texto_pantalla": "¿VERANO O INVIERNO?",
+      "busqueda_video": "santiago sunrise",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Chile continental usa UTC−4 en horario de invierno y UTC−3 en horario de verano.",
+    "El cambio se fija por decreto del Gobierno; actualmente el horario de invierno rige desde el primer sábado de abril hasta el primer sábado de septiembre (verificar decreto vigente).",
+    "La Región de Magallanes mantiene UTC−3 todo el año desde 2017 (verificar si otras regiones, como Aysén, también lo adoptaron).",
+    "Los dispositivos usan la base de datos de zonas horarias de IANA (tz database), mantenida por voluntarios.",
+    "Cambios de fecha anunciados con poca anticipación han provocado errores de hora en celulares en Chile (p. ej. en 2016 y 2022; verificar casos)."
+  ]
+}

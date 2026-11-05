@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo funcionan los atrapanieblas del norte",
+  "titulo": "¿Cómo se saca agua de la niebla?",
+  "escenas": [
+    {
+      "narracion": "En el desierto más seco del mundo, hay gente que saca agua… del aire.",
+      "texto_pantalla": "AGUA DEL AIRE",
+      "busqueda_video": "atacama desert",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "En la costa del norte se forma la camanchaca: una niebla espesa que llega desde el mar y choca con los cerros.",
+      "texto_pantalla": "LA CAMANCHACA",
+      "busqueda_video": "coastal fog hills",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Esa niebla son millones de gotitas tan pequeñas que flotan en el aire, pero no caen como lluvia.",
+      "texto_pantalla": "GOTITAS QUE FLOTAN",
+      "busqueda_video": "mist droplets",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "La idea es poner una malla vertical en su camino, como una red de vóleibol gigante.",
+      "texto_pantalla": "UNA MALLA GIGANTE",
+      "busqueda_video": "mesh net",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Las gotitas chocan con los hilos, se juntan, se vuelven gotas grandes y escurren hacia una canaleta.",
+      "texto_pantalla": "SE JUNTAN Y ESCURREN",
+      "busqueda_video": "water drops net",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "En un buen día de niebla, cada metro cuadrado de malla puede juntar varios litros de agua.",
+      "texto_pantalla": "LITROS POR M²",
+      "busqueda_video": "water bucket",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "La idea nació en Chile: el físico Carlos Espinosa la desarrolló en los años cincuenta y donó su invento para que cualquiera lo usara.",
+      "texto_pantalla": "INVENTO CHILENO",
+      "busqueda_video": "scientist vintage",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Hoy se usa para regar huertos, dar agua a comunidades… y hasta para hacer cerveza.",
+      "texto_pantalla": "¡HASTA CERVEZA!",
+      "busqueda_video": "vegetable garden",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Conocías los atrapanieblas?",
+      "texto_pantalla": "¿LOS CONOCÍAS?",
+      "busqueda_video": "desert coast sunset",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El desierto de Atacama es el desierto no polar más árido del mundo.",
+    "La camanchaca es una niebla costera (estratocúmulos) que avanza desde el mar e intercepta los cerros costeros.",
+    "Los atrapanieblas usan mallas verticales (tipo Raschel) donde las gotas se coalescen y escurren a canaletas.",
+    "Rendimientos típicos: del orden de 2 a 10 litros por m² al día según el sitio y la época (verificar cifra a usar).",
+    "El físico chileno Carlos Espinosa Arancibia desarrolló el atrapanieblas en los años 50–60 y cedió la patente (a la UNESCO) para su libre uso.",
+    "Se usa en localidades como Chungungo, Alto Patache o Peña Blanca; existe una cerveza artesanal elaborada con agua de niebla."
+  ]
+}

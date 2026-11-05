@@ -1,0 +1,67 @@
+{
+  "tema": "Cómo movieron los moái de Rapa Nui",
+  "titulo": "¿Los moái caminaron?",
+  "escenas": [
+    {
+      "narracion": "Según la tradición de Rapa Nui, los moái caminaron hasta su lugar. Y unos científicos decidieron tomárselo en serio.",
+      "texto_pantalla": "¿LOS MOÁI CAMINARON?",
+      "busqueda_video": "easter island moai",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "En la isla hay cerca de mil moái. Se tallaron en la cantera del volcán Rano Raraku, y muchos pesan varias toneladas.",
+      "texto_pantalla": "CERCA DE 1.000",
+      "busqueda_video": "rano raraku quarry",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Algunos llegaron a kilómetros de distancia… sin ruedas, sin animales de carga y sin grúas.",
+      "texto_pantalla": "SIN RUEDAS NI GRÚAS",
+      "busqueda_video": "rapa nui landscape",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "En 2012, un equipo construyó una réplica de casi cinco toneladas y le amarró tres cuerdas.",
+      "texto_pantalla": "UNA RÉPLICA Y 3 CUERDAS",
+      "busqueda_video": "ropes closeup",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Dos grupos tiraban hacia los lados, alternando, y otro atrás la estabilizaba.",
+      "texto_pantalla": "TIRAR Y ALTERNAR",
+      "busqueda_video": "people pulling rope",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "La estatua se balanceaba de un lado a otro y avanzaba de pie… como si caminara.",
+      "texto_pantalla": "¡CAMINA!",
+      "busqueda_video": "statue rocking",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Unas dieciocho personas lograron moverla cien metros en menos de una hora.",
+      "texto_pantalla": "18 PERSONAS, 100 M",
+      "busqueda_video": "team work",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Y los moái que quedaron tirados en los antiguos caminos tienen justo la base y la inclinación para avanzar así.",
+      "texto_pantalla": "LA FORMA LO DELATA",
+      "busqueda_video": "moai lying ground",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Sabías que los moái caminaban?",
+      "texto_pantalla": "¿LO SABÍAS?",
+      "busqueda_video": "easter island sunset",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "La tradición oral rapanui dice que los moái 'caminaron' (gracias al mana) hasta los ahu.",
+    "Existen cerca de 900–1.000 moái; la mayoría se talló en la cantera de Rano Raraku.",
+    "En 2012, Terry Hunt y Carl Lipo, con un equipo, movieron de pie una réplica de ~4,35 t (verificar peso exacto) con tres cuerdas, balanceándola.",
+    "Unas 18 personas la movieron unos 100 m en aproximadamente 40 minutos.",
+    "Los moái abandonados en los caminos tienen bases en forma de D e inclinación hacia adelante compatibles con el método (publicado también en estudios posteriores, p. ej. 2025)."
+  ]
+}

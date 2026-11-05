@@ -1,0 +1,67 @@
+{
+  "tema": "Cómo funciona el TAG y los pórticos de las autopistas",
+  "titulo": "¿Cómo te cobra el pórtico sin que frenes?",
+  "escenas": [
+    {
+      "narracion": "Pasas bajo un pórtico a cien kilómetros por hora… y te cobra sin que frenes.",
+      "texto_pantalla": "SIN FRENAR",
+      "busqueda_video": "highway gantry night",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "El secreto es el TAG, esa cajita pegada al parabrisas. Adentro tiene un pequeño transmisor de radio.",
+      "texto_pantalla": "EL TAG",
+      "busqueda_video": "car windshield",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Cuando te acercas, la antena del pórtico le habla, y el TAG responde con su número de identificación en una fracción de segundo.",
+      "texto_pantalla": "¡ME IDENTIFICO!",
+      "busqueda_video": "radio waves",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Al mismo tiempo, sensores miden tu vehículo para saber si eres auto, camioneta o camión: cada uno paga distinto.",
+      "texto_pantalla": "¿AUTO O CAMIÓN?",
+      "busqueda_video": "truck highway",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Y unas cámaras fotografían tu patente, por si el TAG no responde.",
+      "texto_pantalla": "FOTO A LA PATENTE",
+      "busqueda_video": "traffic camera",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Cada pasada se suma a tu cuenta, y a fin de mes te llega la boleta.",
+      "texto_pantalla": "LLEGA LA BOLETA",
+      "busqueda_video": "invoice paper",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "¿Y si no tienes TAG? La foto de tu patente queda registrada: debes pagar un pase diario, o te puede llegar una multa.",
+      "texto_pantalla": "¿SIN TAG?",
+      "busqueda_video": "car license plate",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Chile fue uno de los primeros países en usar este cobro sin barreras en autopistas urbanas, desde 2004.",
+      "texto_pantalla": "DESDE 2004",
+      "busqueda_video": "santiago highway aerial",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Qué otra cosa de la ciudad quieres entender?",
+      "texto_pantalla": "¿QUÉ SIGUE?",
+      "busqueda_video": "city traffic night",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El TAG (televía) es un transpondedor que se comunica por radio de corto alcance (DSRC, 5,8 GHz) con las antenas del pórtico.",
+    "La identificación se realiza en milisegundos y funciona a velocidad de autopista.",
+    "Los pórticos tienen sensores que clasifican el vehículo (categorías de tarifa) y cámaras que leen la patente como respaldo.",
+    "Sin TAG, el paso queda registrado por la patente: se puede regularizar con un Pase Diario; si no, constituye infracción.",
+    "Las autopistas urbanas de Santiago con sistema 'free flow' comenzaron a operar alrededor de 2004–2005 (Autopista Central, Costanera Norte); Chile fue pionero en la región, no el primero del mundo."
+  ]
+}

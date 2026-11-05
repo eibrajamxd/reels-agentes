@@ -1,0 +1,67 @@
+{
+  "tema": "Cómo se saca el litio del Salar de Atacama",
+  "titulo": "¿Cómo se saca el litio de tu batería?",
+  "escenas": [
+    {
+      "narracion": "La batería de tu celular pudo empezar como agua salada… evaporándose bajo el sol del desierto.",
+      "texto_pantalla": "DEL DESIERTO A TU BATERÍA",
+      "busqueda_video": "phone battery",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Bajo el Salar de Atacama hay salmuera: agua cargada de sales y, entre ellas, litio.",
+      "texto_pantalla": "SALMUERA",
+      "busqueda_video": "salt flat atacama",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Se bombea a la superficie y se reparte en enormes piscinas de colores verdes y amarillos, que se ven desde el espacio.",
+      "texto_pantalla": "PISCINAS GIGANTES",
+      "busqueda_video": "evaporation ponds aerial",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "El sol y el viento del desierto evaporan el agua lentamente, durante muchos meses.",
+      "texto_pantalla": "EVAPORACIÓN SOLAR",
+      "busqueda_video": "sun desert heat",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Piscina tras piscina, las otras sales se quedan en el fondo, y el litio se concentra cada vez más.",
+      "texto_pantalla": "EL LITIO SE CONCENTRA",
+      "busqueda_video": "salt crystals",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Esa salmuera concentrada viaja a una planta, donde se convierte en carbonato de litio: un polvo blanco.",
+      "texto_pantalla": "POLVO BLANCO",
+      "busqueda_video": "white powder lab",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Con él se fabrican baterías para celulares, computadores y autos eléctricos.",
+      "texto_pantalla": "BATERÍAS",
+      "busqueda_video": "electric car charging",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Chile es uno de los mayores productores de litio del mundo… y el gran debate es cuánta agua del desierto se usa en el proceso.",
+      "texto_pantalla": "¿Y EL AGUA?",
+      "busqueda_video": "flamingos lagoon",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Sabías de dónde venía tu batería?",
+      "texto_pantalla": "¿LO SABÍAS?",
+      "busqueda_video": "atacama landscape",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "En el Salar de Atacama el litio se obtiene de salmueras subterráneas bombeadas a pozas de evaporación solar.",
+    "El proceso de evaporación tarda del orden de 12 a 18 meses (verificar), y precipita otras sales (halita, silvinita, etc.).",
+    "La salmuera concentrada se procesa (p. ej. en el Salar del Carmen, Antofagasta) para obtener carbonato e hidróxido de litio.",
+    "Chile es el segundo productor mundial de litio (después de Australia) y tiene de las mayores reservas (verificar ranking del año).",
+    "Existe debate por el uso de agua y el impacto en ecosistemas del salar (lagunas, flamencos) y comunidades atacameñas."
+  ]
+}

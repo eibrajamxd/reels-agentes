@@ -1,0 +1,68 @@
+{
+  "tema": "Por qué los telescopios del mundo están en Atacama",
+  "titulo": "¿Por qué los mejores telescopios están en Chile?",
+  "escenas": [
+    {
+      "narracion": "Los telescopios más poderosos del mundo no están en Estados Unidos ni en Europa… están en el desierto de Atacama.",
+      "texto_pantalla": "EN ATACAMA",
+      "busqueda_video": "telescope observatory night",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Razón uno: es seco. El vapor de agua del aire absorbe y distorsiona la luz del espacio, y en Atacama casi no hay.",
+      "texto_pantalla": "1. SECO",
+      "busqueda_video": "desert dry ground",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Razón dos: la altura. ALMA está a cinco mil metros: arriba queda menos atmósfera que atravesar.",
+      "texto_pantalla": "2. ALTURA",
+      "busqueda_video": "alma observatory antennas",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Razón tres: más de trescientas noches despejadas al año.",
+      "texto_pantalla": "3. CIELOS DESPEJADOS",
+      "busqueda_video": "starry sky timelapse",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Razón cuatro: cielos oscuros. Chile tiene normas para limitar la contaminación lumínica en el norte.",
+      "texto_pantalla": "4. CIELOS OSCUROS",
+      "busqueda_video": "milky way desert",
+      "color": "#B388FF"
+    },
+    {
+      "narracion": "Y desde el hemisferio sur se ve el centro de nuestra galaxia, la Vía Láctea, justo sobre la cabeza.",
+      "texto_pantalla": "EL CENTRO DE LA GALAXIA",
+      "busqueda_video": "milky way core",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Por eso aquí se construye el ELT: un telescopio con un espejo de treinta y nueve metros, el más grande del mundo.",
+      "texto_pantalla": "ESPEJO DE 39 M",
+      "busqueda_video": "giant telescope mirror",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Se estima que Chile concentra cerca del cuarenta por ciento de la capacidad de observación astronómica del planeta.",
+      "texto_pantalla": "≈ 40 % DEL MUNDO",
+      "busqueda_video": "observatory dome",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Has visto el cielo del norte?",
+      "texto_pantalla": "¿LO HAS VISTO?",
+      "busqueda_video": "atacama night sky",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El norte de Chile tiene muy baja humedad, gran altitud y cielos despejados la mayor parte del año (se citan más de 300 noches despejadas en sitios como Paranal).",
+    "ALMA está en el llano de Chajnantor a unos 5.000 m de altitud.",
+    "Chile tiene normas de control de contaminación lumínica (Norma Lumínica, D.S. 43/2012, actualizada) en las regiones del norte.",
+    "Desde el hemisferio sur el centro de la Vía Láctea pasa cerca del cenit.",
+    "El Extremely Large Telescope (ELT) de ESO se construye en Cerro Armazones, con un espejo primario de 39 m.",
+    "La cifra de ~40 % de la capacidad astronómica mundial es la que suele citar el gobierno; verificar fuente y año (algunas proyecciones hablan de ~70 % hacia 2030)."
+  ]
+}

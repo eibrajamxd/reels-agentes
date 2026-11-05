@@ -1,0 +1,68 @@
+{
+  "tema": "Cómo se forman los campos de hielo de la Patagonia",
+  "titulo": "Chile guarda una reserva gigante de agua… congelada",
+  "escenas": [
+    {
+      "narracion": "Chile guarda una de las reservas de agua dulce más grandes del planeta… congelada.",
+      "texto_pantalla": "AGUA CONGELADA",
+      "busqueda_video": "patagonia glacier aerial",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "En la Patagonia hay dos enormes mantos de hielo: el Campo de Hielo Norte y el Campo de Hielo Sur.",
+      "texto_pantalla": "NORTE Y SUR",
+      "busqueda_video": "ice field mountains",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "El Sur es tan grande que, fuera de la Antártica y Groenlandia, es una de las mayores extensiones de hielo del mundo.",
+      "texto_pantalla": "SOLO LO SUPERAN 2",
+      "busqueda_video": "greenland ice",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "¿Cómo se formó? Allí nieva muchísimo: los vientos húmedos del Pacífico chocan con la cordillera y descargan nieve casi todo el año.",
+      "texto_pantalla": "NIEVE SIN PARAR",
+      "busqueda_video": "snow storm mountains",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "La nieve se acumula, se aplasta con su propio peso y, con los años, se convierte en hielo.",
+      "texto_pantalla": "NIEVE → HIELO",
+      "busqueda_video": "snow layers",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Ese hielo no está quieto: fluye lento, cuesta abajo, y forma glaciares que llegan a lagos y fiordos.",
+      "texto_pantalla": "EL HIELO FLUYE",
+      "busqueda_video": "glacier river",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Cuando un trozo se desprende y cae al agua con un estruendo, nace un témpano.",
+      "texto_pantalla": "¡NACE UN TÉMPANO!",
+      "busqueda_video": "glacier calving",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Hoy la mayoría de esos glaciares retrocede por el calentamiento global, aunque unos pocos, como el Pío XI, han avanzado.",
+      "texto_pantalla": "RETROCEDEN",
+      "busqueda_video": "melting ice",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Has visto un glaciar en persona?",
+      "texto_pantalla": "¿HAS VISTO UNO?",
+      "busqueda_video": "torres del paine",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Los Campos de Hielo Norte y Sur están en la Patagonia (el Sur es compartido con Argentina).",
+    "El Campo de Hielo Sur es la mayor masa de hielo continental del hemisferio sur fuera de la Antártica; se le cita como la tercera mayor reserva de agua dulce/hielo tras Antártica y Groenlandia (verificar formulación).",
+    "Su formación se debe a precipitaciones muy altas por los vientos del oeste y el efecto orográfico de los Andes.",
+    "La nieve se compacta en neviza y luego en hielo glaciar; los glaciares fluyen por gravedad.",
+    "El desprendimiento de bloques (calving) forma témpanos en lagos y fiordos.",
+    "La mayoría de los glaciares patagónicos retrocede; el Pío XI (Brüggen) es una de las excepciones que avanzó en el siglo XX."
+  ]
+}

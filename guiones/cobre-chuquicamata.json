@@ -1,0 +1,67 @@
+{
+  "tema": "Cómo se saca el cobre en Chuquicamata",
+  "titulo": "El hoyo chileno que se ve desde el espacio",
+  "escenas": [
+    {
+      "narracion": "En el norte de Chile hay un hoyo tan grande que se ve desde el espacio: Chuquicamata.",
+      "texto_pantalla": "SE VE DESDE EL ESPACIO",
+      "busqueda_video": "open pit mine aerial",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Es una de las minas a rajo abierto más grandes del mundo: más de cuatro kilómetros de largo y casi un kilómetro de profundidad.",
+      "texto_pantalla": "4 KM × 1 KM",
+      "busqueda_video": "giant mining trucks",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "De ahí sale cobre, y Chile produce cerca de una cuarta parte de todo el cobre del planeta.",
+      "texto_pantalla": "¼ DEL COBRE MUNDIAL",
+      "busqueda_video": "copper ore",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Pero la roca tiene muy poco: apenas alrededor de uno por ciento es cobre.",
+      "texto_pantalla": "SOLO ≈ 1 %",
+      "busqueda_video": "rocks closeup",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Por eso se tritura y se muele hasta dejarla como polvo, y se mezcla con agua.",
+      "texto_pantalla": "TRITURAR Y MOLER",
+      "busqueda_video": "rock crusher",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Luego viene el truco: se inyectan burbujas. El cobre se pega a ellas y sube a la superficie como espuma.",
+      "texto_pantalla": "¡BURBUJAS!",
+      "busqueda_video": "foam bubbles",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Esa espuma se funde y se refina hasta lograr cobre de casi cien por ciento de pureza.",
+      "texto_pantalla": "99,99 % PURO",
+      "busqueda_video": "molten metal",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Y termina en cables, motores y celulares. Cada auto eléctrico lleva decenas de kilos de cobre.",
+      "texto_pantalla": "EN TODO LO ELÉCTRICO",
+      "busqueda_video": "copper wires",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Alguien de tu familia trabaja en la minería?",
+      "texto_pantalla": "¿TU FAMILIA ES MINERA?",
+      "busqueda_video": "desert mine sunset",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Chuquicamata (Codelco, Región de Antofagasta) es una de las minas a rajo abierto más grandes del mundo (~4,3 km de largo, ~3 km de ancho, ~1 km de profundidad); desde 2019 opera también como mina subterránea.",
+    "Chile es el mayor productor mundial de cobre, con cerca de un cuarto de la producción global (verificar % del año).",
+    "Las leyes de mineral típicas en grandes minas de cobre son de ~0,5–1 % de cobre.",
+    "El concentrado se obtiene por chancado, molienda y flotación con burbujas; luego fundición y electrorrefinación producen cátodos de 99,99 %.",
+    "Un auto eléctrico contiene del orden de 50–80 kg de cobre (verificar fuente)."
+  ]
+}

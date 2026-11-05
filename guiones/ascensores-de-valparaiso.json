@@ -1,0 +1,66 @@
+{
+  "tema": "Cómo funcionan los ascensores de Valparaíso",
+  "titulo": "¿Cómo suben los ascensores de Valparaíso?",
+  "escenas": [
+    {
+      "narracion": "Los ascensores de Valparaíso suben los cerros hace más de cien años… con un truco muy simple.",
+      "texto_pantalla": "+ DE 100 AÑOS",
+      "busqueda_video": "valparaiso funicular",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "No son ascensores de edificio: son funiculares. Dos carros sobre rieles, en una pendiente, unidos por un mismo cable.",
+      "texto_pantalla": "DOS CARROS, UN CABLE",
+      "busqueda_video": "valparaiso hills colorful",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Arriba, el cable pasa por una gran rueda. Cuando un carro sube, el otro baja.",
+      "texto_pantalla": "UNO SUBE, OTRO BAJA",
+      "busqueda_video": "pulley wheel",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Así, el carro que baja ayuda a tirar al que sube: se equilibran como en un balancín.",
+      "texto_pantalla": "COMO UN BALANCÍN",
+      "busqueda_video": "seesaw playground",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Por eso el motor no tiene que levantar todo el peso: solo vencer la diferencia entre los dos carros y el roce.",
+      "texto_pantalla": "EL MOTOR AYUDA POCO",
+      "busqueda_video": "electric motor",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Algunos de los primeros funcionaban con agua: llenaban un estanque en el carro de arriba, y su peso lo hacía bajar y subir al otro.",
+      "texto_pantalla": "¡CON AGUA!",
+      "busqueda_video": "water tank",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "El más antiguo que sigue funcionando, el Concepción, abrió en 1883.",
+      "texto_pantalla": "CONCEPCIÓN, 1883",
+      "busqueda_video": "valparaiso old town",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "Así que la próxima vez que te subas, mira el carro que viene bajando: es tu contrapeso.",
+      "texto_pantalla": "¡TU CONTRAPESO!",
+      "busqueda_video": "valparaiso view sea",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Cuál es tu ascensor favorito?",
+      "texto_pantalla": "¿CUÁL ES EL TUYO?",
+      "busqueda_video": "valparaiso sunset",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "Los ascensores de Valparaíso son funiculares de dos carros unidos por un cable que pasa por una polea en la estación superior.",
+    "El carro descendente actúa como contrapeso del ascendente; el motor compensa la diferencia de carga y las pérdidas.",
+    "Algunos ascensores antiguos usaron sistemas hidráulicos o de contrapeso de agua antes de electrificarse (verificar cuáles).",
+    "El Ascensor Concepción (Turri) se inauguró en 1883 y es considerado el más antiguo de la ciudad."
+  ]
+}

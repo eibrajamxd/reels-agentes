@@ -1,0 +1,68 @@
+{
+  "tema": "El terremoto de Valdivia de 1960",
+  "titulo": "El terremoto más fuerte de la historia fue en Chile",
+  "escenas": [
+    {
+      "narracion": "El terremoto más fuerte jamás registrado ocurrió en Chile: Valdivia, 1960, magnitud 9,5.",
+      "texto_pantalla": "MAGNITUD 9,5",
+      "busqueda_video": "earthquake damage old",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Fue un domingo, el 22 de mayo, y la tierra se sacudió durante cerca de diez minutos.",
+      "texto_pantalla": "CASI 10 MINUTOS",
+      "busqueda_video": "clock ticking",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "La falla se rompió a lo largo de unos mil kilómetros: más o menos la distancia de Santiago a Puerto Montt.",
+      "texto_pantalla": "1.000 KM DE FALLA",
+      "busqueda_video": "chile map aerial",
+      "color": "#FF6B35"
+    },
+    {
+      "narracion": "En algunas zonas el suelo se hundió casi dos metros, y el agua inundó campos que nunca volvieron a secarse.",
+      "texto_pantalla": "EL SUELO SE HUNDIÓ",
+      "busqueda_video": "wetland river",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "El tsunami cruzó todo el océano Pacífico: casi un día después golpeó Hawái y Japón.",
+      "texto_pantalla": "CRUZÓ EL PACÍFICO",
+      "busqueda_video": "ocean waves storm",
+      "color": "#4DD0E1"
+    },
+    {
+      "narracion": "Y faltaba algo más: derrumbes taparon la salida del lago Riñihue. Si el agua rompía de golpe, arrasaría Valdivia.",
+      "texto_pantalla": "EL RIÑIHUAZO",
+      "busqueda_video": "lake mountains chile",
+      "color": "#FF3D3D"
+    },
+    {
+      "narracion": "Durante semanas, cientos de trabajadores cavaron canales para vaciarlo poco a poco, y salvaron la ciudad.",
+      "texto_pantalla": "SALVARON LA CIUDAD",
+      "busqueda_video": "workers digging",
+      "color": "#7CFC00"
+    },
+    {
+      "narracion": "Desde entonces, Chile es uno de los países que más estudia los terremotos y se prepara para ellos.",
+      "texto_pantalla": "APRENDIMOS",
+      "busqueda_video": "seismograph",
+      "color": "#FFD400"
+    },
+    {
+      "narracion": "Síguenos para entender cómo funciona Chile y el mundo. ¿Alguien de tu familia lo vivió?",
+      "texto_pantalla": "¿TU FAMILIA LO VIVIÓ?",
+      "busqueda_video": "valdivia river",
+      "color": "#FFD400"
+    }
+  ],
+  "datos_a_verificar": [
+    "El terremoto de Valdivia del 22 de mayo de 1960 es el más fuerte registrado instrumentalmente (Mw 9,4–9,6; se cita 9,5).",
+    "La duración del movimiento principal se estima en unos 10 minutos.",
+    "La ruptura tuvo cerca de 1.000 km de largo (aprox. entre la zona de Concepción/Arauco y Chiloé).",
+    "Hubo hundimientos (subsidencia) de hasta ~2 m en zonas costeras y del río Cruces, que formaron humedales permanentes.",
+    "El tsunami llegó a Hawái (~15 h después) y a Japón (~22 h después), con víctimas en ambos.",
+    "El 'Riñihuazo': deslizamientos bloquearon el desagüe del lago Riñihue; obras de desagüe controlado evitaron la inundación catastrófica de Valdivia."
+  ]
+}
