@@ -23,10 +23,13 @@ LIB = (Path(__file__).parent / "anim_lib.js").read_text(encoding="utf-8")
 # Biblioteca de dibujo del skill procedural-film (MIT): trazo a mano, blueprint, papel, sombreado.
 _FILM_LIB = Path(__file__).resolve().parent.parent / ".claude/skills/procedural-film/foundation/src/lib.js"
 FILM_LIB = _FILM_LIB.read_text(encoding="utf-8") if _FILM_LIB.exists() else ""
+# GSAP (licencia estándar gratuita de GreenSock), copiado desde el runtime de motionmaxxing.
+_GSAP = Path(__file__).resolve().parent / "vendor/gsap.min.js"
+GSAP = _GSAP.read_text(encoding="utf-8") if _GSAP.exists() else ""
 HTML = f"""<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>html,body{{margin:0;background:#000}}</style></head>
-<body><canvas id="c" width="{W}" height="{H}"></canvas><script>{FILM_LIB}</script><script>{LIB}</script></body></html>"""
+<body><canvas id="c" width="{W}" height="{H}"></canvas><script>{GSAP}</script><script>{FILM_LIB}</script><script>{LIB}</script></body></html>"""
 
 API_DOC = """Escribe SOLO el cuerpo de una función JavaScript `(ctx, t, A) => { ... }` que dibuja en un canvas
 2D de 1080x1920 el fotograma del instante t (segundos desde el inicio de la escena).
@@ -35,7 +38,13 @@ Debe ser determinista (prohibido Math.random y Date; usa A.rand(semilla)). Sin i
 API disponible (objeto A):
 - A.W, A.H, A.t, A.dur (duración de la escena), A.accent (color de la escena), A.FONT, A.ctx
 - A.k('palabra', def, n=1) -> segundo en que la voz dice esa palabra (n-ésima vez). ¡Úsalo para sincronizar!
-- A.p(inicio, duracion=0.6, curva='outCubic') -> progreso 0..1. Curvas: linear,inCubic,outCubic,inOutCubic,inOutSine,outBack,outElastic
+- A.p(inicio, duracion=0.6, curva='softLand') -> progreso 0..1. Usa de preferencia las 12 curvas medidas de motion
+  design profesional: snapSettle (entrada de héroe), softLand (textos y paneles), whip (movimiento grande), glide
+  (movimiento mediano), crashIn (impacto), popOver / bounceHard (rebote, con moderación), softInOut (fundidos),
+  cruise (lineal), gentleIn, accelExit / crashOut (salidas). También acepta curvas de GSAP: 'expo.out', 'back.out(2)'...
+  Evita outCubic genérico en todo: elige la curva según el papel del movimiento.
+- A.tl((tl, s) => {...}) -> estado: línea de tiempo GSAP construida una vez y llevada al instante t (determinista).
+  Usa siempre tl.fromTo(s, {desde}, {hasta, duration, ease}, inicio) sobre propiedades de s, y dibuja con s.x, s.alpha...
 - A.pop(inicio, dur=0.45) -> escala 0..~1.1..1 para que algo aparezca rebotando
 - A.lerp(a,b,p), A.clamp(v,a=0,b=1), A.rand(semilla) -> función que da números 0..1, A.counter(desde,hasta,p,decimales) -> texto
 - A.bg(colorArriba, colorAbajo, rejilla=true)  fondo del canal (llámalo primero)
@@ -62,6 +71,11 @@ ZONAS DE LA PANTALLA (obligatorio respetarlas):
 - y 1150–1310: subtítulos (los pone el sistema). Nada importante ahí.
 - y 1780–1920: marca del canal.
 - Zona principal para la animación: y 420–1120 (el centro de atención). Zona secundaria: y 1340–1740.
+
+CRITERIO DE MOTION DESIGN (skill motionmaxxing):
+- Un solo elemento protagonista por momento; lo grande necesita algo pequeño al lado. Gasta el énfasis, no lo reparte.
+- Cada movimiento causa el siguiente: un objeto se convierte en el de la siguiente idea; evita fundidos entre todo.
+- Sostén un instante antes de lo importante; nada de contadores "01/05", etiquetas en esquinas ni tarjetas genéricas.
 
 PRINCIPIOS DE RETENCIÓN:
 - Algo debe cambiar en pantalla al menos cada 1.5 s; nunca un plano quieto.

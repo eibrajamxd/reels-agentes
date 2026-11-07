@@ -172,3 +172,13 @@ reels-agentes/
 ├── musica/                 tus pistas libres de derechos
 └── data/                   cola.json, ideas.json, metricas.json, horarios.json
 ```
+
+## Skills de animación instaladas (`.claude/skills/`)
+| Skill | Origen y licencia | Uso en el proyecto |
+|---|---|---|
+| procedural-film | kuhnhomeuk-cell/procedural-film (MIT) | Trazo a mano y plano blueprint (`ESTILO_ANIMACION=pelicula`) |
+| motionmaxxing | Tejashmakwana/motionmaxxing (Apache-2.0) | 12 curvas de animación medidas (`A.p(..., 'softLand')`) y criterio de motion design del Animador |
+| gsap-* (8 skills) | greensock/gsap-skills (MIT) | Líneas de tiempo GSAP en las escenas (`A.tl(...)`); GSAP en `agentes/vendor/` |
+
+Claude Code las carga automáticamente al trabajar en esta carpeta.
+

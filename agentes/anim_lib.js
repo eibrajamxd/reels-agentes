@@ -14,6 +14,29 @@
     outBack: p => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); },
     outElastic: p => (p === 0 || p === 1 ? p : Math.pow(2, -10 * p) * Math.sin((p * 10 - 0.75) * (2 * Math.PI) / 3) + 1),
   };
+  // 12 curvas medidas cuadro a cuadro en 53 piezas de motion design profesional
+  // (skill motionmaxxing, Apache-2.0, runtime/motion.js). Todas cumplen f(0)=0 y f(1)=1.
+  const powerOut = q => p => 1 - Math.pow(1 - p, q), powerIn = q => p => Math.pow(p, q);
+  const expoOut = k => { const d = 1 - Math.exp(-k); return p => (1 - Math.exp(-k * p)) / d; };
+  const snapRamp = (w, tau) => { const n = w * (1 - Math.exp(-1 / tau)) + (1 - w); return p => (w * (1 - Math.exp(-p / tau)) + (1 - w) * p) / n; };
+  const snapOver = (Am, ta, td) => { const f = p => (1 + Am * Math.exp(-p / td)) * (1 - Math.exp(-p / ta)); const n = f(1); return p => f(p) / n; };
+  const spring = (c, om) => { const f = p => 1 - Math.exp(-c * p) * (Math.cos(om * p) + (c / om) * Math.sin(om * p)); const n = f(1); return p => f(p) / n; };
+  const smoothP = q => p => { const a = Math.pow(p, q), b = Math.pow(1 - p, q); return a / (a + b); };
+  const guard = f => p => (p <= 0 ? 0 : p >= 1 ? 1 : f(p));
+  Object.assign(ease, {
+    crashIn: guard(snapOver(2.0, 0.19, 0.218)),  // golpea y se pasa apenas de su marca
+    popOver: guard(spring(2.67, 4.36)),          // sobrepaso tardío y suave
+    bounceHard: guard(spring(1.34, 5.07)),       // rebote grande: usar poco
+    snapSettle: guard(snapRamp(0.942, 0.118)),   // entrada de héroe: 54 % del recorrido en el primer 10 % del tiempo
+    softLand: guard(expoOut(3.41)),              // frenada firme: la curva de trabajo para textos y paneles
+    whip: guard(powerOut(2.52)),                 // movimiento grande que frena fuerte
+    glide: guard(powerOut(1.7)),                 // ease-out suave para movimientos medianos
+    cruise: guard(p => p),                       // lineal: fundidos, derivas, contadores
+    softInOut: guard(smoothP(1.42)),             // S simétrica para opacidad o desenfoque
+    gentleIn: guard(powerIn(2.07)),              // aceleración leve
+    accelExit: guard(powerIn(2.6)),              // la curva de salida
+    crashOut: guard(powerIn(3.97)),              // aceleración fuerte hacia un corte
+  });
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const FONT = "Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
 
@@ -27,7 +50,17 @@
         return def;
       },
       // Progreso 0..1 con curva entre start y start+len.
-      p(start, len = 0.6, e = 'outCubic') { return ease[e](clamp((t - start) / Math.max(len, 1e-3))); },
+      p(start, len = 0.6, e = 'outCubic') {
+        const f = ease[e] || (window.gsap && gsap.parseEase(e)) || ease.outCubic;
+        return f(clamp((t - start) / Math.max(len, 1e-3)));
+      },
+      // Línea de tiempo GSAP (si está cargado): se construye una vez por escena y se lleva al instante t.
+      // const s = A.tl((tl, s) => { s.x = 0; tl.fromTo(s, {x: 0}, {x: 500, duration: 1, ease: 'power3.out'}, 0.4); });
+      tl(build) {
+        if (!window.gsap) throw new Error('GSAP no está cargado');
+        if (!scene.__tl) { const st = {}; const tlx = gsap.timeline({ paused: true }); build(tlx, st); scene.__tl = { tl: tlx, st }; }
+        scene.__tl.tl.seek(t, false); return scene.__tl.st;
+      },
       // Escala de "pop" (aparece rebotando) a partir de start.
       pop(start, len = 0.45) { return t < start ? 0 : ease.outBack(clamp((t - start) / len)); },
       // Generador aleatorio determinista.
