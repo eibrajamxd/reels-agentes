@@ -16,6 +16,8 @@ for d in (DIR_GUIONES, DIR_SALIDA, DIR_DATA, DIR_MUSICA):
     d.mkdir(exist_ok=True)
 
 MODELO = os.getenv("CLAUDE_MODEL", "claude-opus-5-5")
+# claude-code = usa Claude Code con tu plan de claude.ai (sin costo extra) | api = API de pago por uso
+MOTOR_IA = os.getenv("MOTOR_IA", "claude-code").lower()
 PEXELS_API_KEY = os.getenv("PEXELS_API_KEY", "")
 
 IG_ACCESS_TOKEN = os.getenv("IG_ACCESS_TOKEN", "")

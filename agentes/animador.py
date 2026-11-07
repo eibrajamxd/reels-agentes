@@ -16,7 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 from .claude import pedir_json
-from .config import CANAL_NOMBRE, CHROMIUM_PATH, ESTILO_ANIMACION
+from .config import CANAL_NOMBRE, CHROMIUM_PATH, ESTILO_ANIMACION, MOTOR_IA
 
 W, H = 1080, 1920
 LIB = (Path(__file__).parent / "anim_lib.js").read_text(encoding="utf-8")
@@ -219,7 +219,8 @@ def animar_guion(guion: dict, voces, indices: list[int], rend: Renderizador, int
     pendientes = [i for i in indices if not guion["escenas"][i].get("animacion")]
     codigo: dict[int, str] = {}
     feedback: dict[int, str] = {}
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    # Con Claude Code se limitan las sesiones simultáneas para no agotar el plan tan rápido.
+    with ThreadPoolExecutor(max_workers=2 if MOTOR_IA == "claude-code" else 4) as pool:
         for intento in range(1, intentos + 1):
             if not pendientes:
                 break

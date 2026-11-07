@@ -11,6 +11,7 @@ Uso rápido:
   python main.py auto 3            # produce y programa los 3 siguientes temas de ideas.json
   python main.py cola              # ver calendario
   python main.py aprobar <id>      # aprobar un Reel en revisión
+  python main.py animar guiones/a.json guiones/b.json   # solo animaciones, sin video
   python main.py publicado <id>    # marcar como publicado un Reel que subiste a mano
   python main.py publicar          # publica lo que ya toca (solo con MODO_PUBLICACION=automatica)
   python main.py vigilar           # bucle: publica a su hora, sin cron
@@ -59,6 +60,31 @@ def semana(temas: list[str], total: int, solo_plan: bool):
         print(f"\n==================== Día {d['dia']}: {d['tema']} ====================")
         ruta = buscar_guion(d["tema"])
         crear(d["tema"], ruta, False, False, horario=datetime.fromisoformat(d["publicar_en"]))
+
+
+def animar(rutas: list[str]):
+    """Genera (y guarda en el guion) las animaciones que falten, sin producir el video.
+    Usa tiempos de voz estimados: las animaciones se sincronizan con las palabras (A.k), así que
+    al producir el video con la voz real se ajustan solas."""
+    from agentes.animador import Renderizador, animar_guion
+
+    with Renderizador() as rend:
+        for ruta in rutas:
+            guion = json.loads(Path(ruta).read_text("utf-8"))
+            faltan = [i for i, e in enumerate(guion["escenas"]) if not e.get("animacion")]
+            if not faltan:
+                print(f"✓ {ruta}: ya está animado")
+                continue
+            print(f"\n✨ Animando {ruta} ({len(faltan)} escenas)...")
+            voces = []
+            for e in guion["escenas"]:
+                texto = (e.get("locucion") or {}).get("texto_hablado") or e["narracion"]
+                dur = len(texto.split()) / 3.0
+                voces.append((None, dur + productor.PAUSA, productor._tiempos_estimados(texto, dur)))
+            animar_guion(guion, voces, faltan, rend)
+            Path(ruta).write_text(json.dumps(guion, ensure_ascii=False, indent=2), encoding="utf-8")
+            hechas = sum(1 for e in guion["escenas"] if e.get("animacion"))
+            print(f"   {ruta}: {hechas} de {len(guion['escenas'])} escenas animadas")
 
 
 def crear(tema: str | None, guion_path: str | None, sin_voz: bool, sin_publicar: bool,
@@ -127,6 +153,8 @@ def main():
     a = sub.add_parser("auto"); a.add_argument("n", type=int, nargs="?", default=1)
     sub.add_parser("cola")
     ap = sub.add_parser("aprobar"); ap.add_argument("id")
+    an = sub.add_parser("animar", help="crear las animaciones de uno o más guiones sin producir el video")
+    an.add_argument("guiones", nargs="+")
     pu = sub.add_parser("publicado", help="marcar como publicado un Reel que subiste a mano")
     pu.add_argument("id")
     sub.add_parser("publicar")
@@ -199,6 +227,8 @@ def main():
                 break
         else:
             sys.exit("No encontré ese id")
+    elif args.cmd == "animar":
+        animar(args.guiones)
     elif args.cmd == "publicado":
         cola = cm.leer_cola()
         for item in cola:
