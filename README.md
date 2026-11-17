@@ -179,6 +179,7 @@ reels-agentes/
 | procedural-film | kuhnhomeuk-cell/procedural-film (MIT) | Trazo a mano y plano blueprint (`ESTILO_ANIMACION=pelicula`) |
 | motionmaxxing | Tejashmakwana/motionmaxxing (Apache-2.0) | 12 curvas de animación medidas (`A.p(..., 'softLand')`) y criterio de motion design del Animador |
 | gsap-* (8 skills) | greensock/gsap-skills (MIT) | Líneas de tiempo GSAP en las escenas (`A.tl(...)`); GSAP en `agentes/vendor/` |
+| higgsfield-* (4 skills) | higgsfield-ai/skills (MIT) | **Opcional y de pago**: imágenes/video con IA (Seedance, Kling, Veo), videos narrados y portadas verticales. Requiere `brew install higgsfield-ai/tap/higgsfield` y `higgsfield auth login`; gasta créditos de higgsfield.ai |
 
 Claude Code las carga automáticamente al trabajar en esta carpeta.
 
